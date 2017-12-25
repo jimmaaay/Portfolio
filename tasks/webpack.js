@@ -14,7 +14,7 @@ const config = {
   output: {
     filename: PRODUCTION
     ? './[name]-[hash].js'
-    : './[name].js',
+    : './js/[name].js',
     path: PRODUCTION 
       ? path.resolve(__dirname, '../dist/js')
       : path.resolve(__dirname, 'dist'),

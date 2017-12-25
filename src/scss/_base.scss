@@ -1,0 +1,14 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper{
+  position: relative;
+  padding: 0 1rem;
+  width: 100%;
+}
+

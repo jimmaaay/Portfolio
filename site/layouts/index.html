@@ -1,5 +1,33 @@
 {{ partial "header" . }}
-
-home page bby
+<header class="header">
+  <svg class="header__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 143.6" preserveAspectRatio="none"><path d="M0 0v127c44.6 12.9 128.2 26.2 231.7 6.7 43.8-8.2 73.3-29.4 88.3-44.7V0H0z" fill="#e87051"/></svg>
+  <div class="wrapper">
+    <a href="/" class="header__logo">Jimmy Thompson</a>
+    <nav class="header__nav">
+      <ul>
+        <li>
+          <a href="/#about">About</a>
+        </li>
+        <li>
+          <a href="/#portfolio">Portfolio</a>
+        </li>
+        <li>
+          <a href="/#technology">Tech<span class="header__nav__hide">nology</span></a>
+        </li>
+        <li>
+          <a href="/#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <h1>Front End Web Developer</h1>
+    <h2>Based in West Sussex. I create bespoke websites at 
+      <a href="https://tannwestlake.com" rel="nofollow noopener" target="_blank">Tann Westlake</a>
+    </h2>
+  </section>
+</main>
 
 {{ partial "footer" . }}
