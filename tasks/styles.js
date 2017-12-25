@@ -10,6 +10,7 @@ const path = require('path');
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
+// Compiles SCSS to css
 const styles = function styles() {
   return gulp.src('./src/scss/main.scss')
     .pipe(sourcemaps.init())

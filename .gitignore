@@ -2,5 +2,8 @@
 node_modules
 dist
 
+gulp-manifest.json
+webpack-manifest.json
+
 # Used when revisioning files
 site/data/manifest.json

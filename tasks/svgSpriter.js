@@ -8,6 +8,7 @@ const path = require('path');
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
+// Creates svg sprite sheets
 const svgSpriter = function SVGSPRITES(done) {
   const possibleDirectories = fs.readdirSync('src/svg');
   const directories = possibleDirectories.filter(path => fs.lstatSync(`src/svg/${path}`).isDirectory());
@@ -40,14 +41,14 @@ const svgSpriter = function SVGSPRITES(done) {
           meta:`src/svg/${dir}/description.yaml`,
         }
       }))
-      .pipe(rev())
+      .pipe(gulpIf(PRODUCTION, rev()))
       .pipe(gulp.dest(path.resolve(__dirname, '../')))
-      .pipe(rev.manifest({
+      .pipe(gulpIf(PRODUCTION, rev.manifest({
         base: 'dist',
         path: 'gulp-manifest.json',
         merge: true,
-      }))
-      .pipe(gulp.dest(path.resolve(__dirname, '../dist')))
+      })))
+      .pipe(gulpIf(PRODUCTION, gulp.dest(path.resolve(__dirname, '../dist'))))
       .on('finish', () => {
         completed++;
         if (completed === directories.length) {

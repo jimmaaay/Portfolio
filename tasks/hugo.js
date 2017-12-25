@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const hugoBin = require('hugo-bin');
 
-
+// Builds the static pages
 module.exports = (cb, options = false) => {
   const hugoArgsDefault = ['-d', '../dist', '-s', 'site', '-v'];
   // const hugoArgsPreview = ['--buildDrafts', '--buildFuture'];

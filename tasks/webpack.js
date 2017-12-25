@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-
 const PRODUCTION = process.env.NODE_ENV;
 
 const config = {
@@ -45,10 +44,11 @@ const config = {
   : [],
 };
 
+// Bundles the JS
 const scripts = () => (
   new Promise(resolve => webpack(config, (err, stats) => {
     if (err) console.log('Webpack', err);
-    console.log(stats.toString({ /* stats options */ }));
+    console.log(stats.toString());
     resolve();
   }))
 );

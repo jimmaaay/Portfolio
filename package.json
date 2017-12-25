@@ -13,6 +13,9 @@
   "author": "",
   "license": "GPL",
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.35",
+    "@babel/preset-env": "^7.0.0-beta.35",
+    "babel-loader": "^8.0.0-beta.0",
     "browser-sync": "^2.21.0",
     "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
@@ -29,10 +32,5 @@
     "webpack": "^3.10.0",
     "webpack-assets-manifest": "^1.0.0",
     "webpack-dev-middleware": "^2.0.3"
-  },
-  "dependencies": {
-    "@babel/core": "^7.0.0-beta.35",
-    "@babel/preset-env": "^7.0.0-beta.35",
-    "babel-loader": "^8.0.0-beta.0"
   }
 }
