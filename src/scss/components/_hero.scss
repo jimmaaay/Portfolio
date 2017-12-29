@@ -1,0 +1,58 @@
+.hero {
+  padding: 3.5rem 0 13rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 3rem;
+
+  &__title {
+    position: relative;
+    background: linear-gradient(to right, $lightOrange, $darkOrange);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 2.3rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  &__sub-title {
+    font-size: 1rem;
+    font-weight: 400;
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+  }
+
+  &__svg {
+    position: absolute;
+    top: 2.75rem;
+    left: 9rem;
+    width: 21.875rem;
+  }
+
+  &__scroll {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 1.25rem;
+    left: 0;
+    right: 0;
+    width: 2rem;
+    margin: 0 auto;
+  }
+
+  &__circle {
+    width: 4.25rem;
+    margin: 0 auto;
+    display: block;
+  }
+
+}
