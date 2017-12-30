@@ -1,0 +1,61 @@
+.portfolio {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0 0;
+  color: #fff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $lightOrange;
+    z-index: -1;
+  }
+
+  &__wave {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 34rem;
+    width: 100%;
+  }
+
+  &__items {
+    @include ulReset;
+  }
+
+  &__item {
+
+    &__a {
+      @include pBottom(56.25%);
+      position: relative;
+      display: block;
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    &__image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+  }
+
+
+}

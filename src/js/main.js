@@ -1,3 +1,4 @@
+import lazyLoad from './lazyload';
 const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
@@ -8,4 +9,4 @@ window.addEventListener('scroll', () => {
   }
 });
 
-console.log('js bundle');
+lazyLoad(Array.from(document.querySelectorAll('img[data-src]')));

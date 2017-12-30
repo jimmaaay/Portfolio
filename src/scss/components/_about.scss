@@ -1,0 +1,28 @@
+.about {
+  overflow: hidden;
+  margin-bottom: 7rem;
+
+  &__social {
+    position: relative;
+    width: 100%;
+    right: -3.5rem;
+    max-width: 18.125rem;
+
+    &__github {
+      position: absolute;
+      left: 2rem;
+      bottom: 4rem;
+      width: 4.5rem;
+      display: block;
+    }
+
+    &__linkedin {
+      width: 3.5rem;
+      display: block;
+      position: absolute;
+      top: 2rem;
+      right: 4.5rem;
+    }
+  }
+
+}

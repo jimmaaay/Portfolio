@@ -3,3 +3,11 @@
   padding: 0;
   list-style: none;
 }
+
+@mixin pBottom($percentage) {
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: $percentage;
+  }
+}
