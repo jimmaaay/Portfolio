@@ -25,6 +25,7 @@
 
   &__items {
     @include ulReset;
+    padding-top: 2rem;
   }
 
   &__item {
@@ -33,6 +34,14 @@
       @include pBottom(56.25%);
       position: relative;
       display: block;
+
+      &:hover {
+        
+        .portfolio__item__overlay {
+          opacity: 1;
+        }
+
+      }
     }
 
     &__overlay {
@@ -53,6 +62,17 @@
       width: 100%;
       object-fit: cover;
       object-position: center;
+    }
+
+    &__overlay {
+      background: rgba(0,0,0,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
     }
 
   }

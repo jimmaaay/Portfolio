@@ -9,7 +9,9 @@ export default (els) => {
     });
   };
   const observer = new IntersectionObserver(callback, {
-    threshold: 0.25,
+    threshold: Array.from(new Array(50)).map((_, i) => {
+      return i * 0.02;
+    })
   });
 
   els.forEach(el => observer.observe(el));

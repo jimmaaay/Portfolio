@@ -8,5 +8,6 @@
 
 @import "components/hero";
 @import "components/header";
-@import "components/about";
+@import "components/about"; // Could async load??
 @import "components/portfolio"; // Could async load??
+@import "components/technology"; // Could async load??
