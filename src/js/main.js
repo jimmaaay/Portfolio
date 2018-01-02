@@ -1,5 +1,6 @@
 import lazyLoad from './lazyload';
 import './technology';
+import './form';
 
 const header = document.querySelector('.header');
 
