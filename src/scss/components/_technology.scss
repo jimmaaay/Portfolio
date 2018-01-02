@@ -1,23 +1,26 @@
 .technology {
   background: $lightOrange;
   color: #fff;
-  padding: 3rem 0 0;
+  padding: 3rem 0 2rem;
 
   &__items {
-    @include ulReset;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 2rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-bottom: 1rem; 
+
+    .d-carousel__outer {
+      padding-left: 0.5rem;
+    }
+    
   }
 
   &__item {
-    width: 11.875rem;
-    height: 11.875rem;
+    width: 7.875rem;
+    height: 7.875rem;
     display: block;
     background: #fff;
     border-radius: 50%;
-    margin-bottom: 1.5rem;
+
   }
 
 }

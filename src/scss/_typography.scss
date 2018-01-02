@@ -47,3 +47,12 @@ h1 {
 h2 {
   font-size: 1.3rem;
 }
+
+
+@media (min-width: 62.5em) { // 1000px
+
+  html {
+    font-size: 150.625%;
+  }
+
+}

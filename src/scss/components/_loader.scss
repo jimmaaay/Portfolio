@@ -1,0 +1,16 @@
+.loader {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 0.5rem solid rgba(255,255,255,0.2);
+  border-right: 0.5rem solid #fff;
+  animation: spin 1s infinite linear;
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
