@@ -1,6 +1,7 @@
 import lazyLoad from './lazyload';
 import './technology';
 import './form';
+import './contact';
 import portfolioInit from './portfolio-items';
 import dCarousel from './vendor/d-carousel';
 
