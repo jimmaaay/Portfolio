@@ -1,15 +1,15 @@
 body {
-  padding-top: 5.5rem;
+  padding-top: 6.25rem;
 }
 
 .header {
   position: fixed;
   overflow: hidden;
-  height: 5.5rem;
+  height: 6.25rem;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 3;
+  z-index: 4;
   transition: transform 0.5s ease-in-out;
 
   &::before {
@@ -34,14 +34,15 @@ body {
     right: 0;
     bottom: 0;
     height: 100%;
+    min-width: 23.75rem;
   }
 
   &__logo {
     font-weight: 600;
     font-size: 1.125rem;
     text-transform: uppercase;
-    display: block;
-    padding: 1rem 0 0.5rem;
+    display: inline-block;
+    padding: 1rem 0 0.25rem;
   }
 
   &__nav {
@@ -58,8 +59,7 @@ body {
 
     a {
       display: block;
-      padding: 0.5rem;
-      font-size: 0.9375rem;
+      padding: 0.9rem 0.5rem;
     }
 
   }
@@ -69,10 +69,44 @@ body {
   }
 
   &--scrolled {
-    transform: translateY(-3.1875rem);
+    transform: translateY(-2.9375rem);
 
     &::before {
       transform: none;
+    }
+
+  }
+
+}
+
+
+@media (min-width: 25em) { // 400px
+
+  .header {
+
+    &__nav {
+
+      a {
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: 28.125em) { // 450px
+
+  .header {
+
+    &__nav {
+
+      &__hide {
+        display: inline;
+      }
+
     }
 
   }

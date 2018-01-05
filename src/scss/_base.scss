@@ -25,6 +25,31 @@ a {
   color: $darkOrange;
 }
 
+// title stays in same place but anchor point is 5rem above title text
+.title-anchor {
+  padding-top: 5rem;
+  margin-top: -5rem;
+}
+
+// Make items higher up have a higher z-index so anyoverlapping title anchors
+// don't block click events
+
+.about, .portfolio, .technology, .contact {
+  position: relative;
+}
+
+.technology {
+  z-index: 1;
+}
+
+.portfolio {
+  z-index: 2;
+}
+
+.about {
+  z-index: 3;
+}
+
 main {
 
   ul:not(.reset) {
