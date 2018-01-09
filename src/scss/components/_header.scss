@@ -112,3 +112,52 @@ body {
   }
 
 }
+
+
+@media (min-width: 56.25em) { // 900px
+
+  .header {
+
+    &__svg {
+      display: none;
+    }
+
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__nav {
+      position: relative;
+      z-index: 1;
+
+      a {
+        font-size: 0.75rem;
+        color: #fff;
+      }
+
+    }
+
+    &__logo {
+      color: $lightOrange !important;
+    }
+
+   
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 1rem;
+      right: -23rem;
+      border-radius: 50%;
+      background: $darkOrange;
+      width: 31rem;
+      height: 25rem;
+      transform: translateX(-50%);
+    }
+
+  }
+
+}

@@ -66,6 +66,20 @@
 
 }
 
+@media (min-width: 34.375em) { // 550px
+
+  .hero {
+
+    &__svg {
+      left: auto;
+      right: -20%;
+      width: 65%;
+    }
+
+  }
+
+}
+
 
 @media (min-width: 48em) { // 768px
 
@@ -73,10 +87,10 @@
 
     &__animation {
       position: absolute;
-      display: block;
+      // display: block;
       right: 0;
       left: 0;
-      top: 4rem;
+      top: 0;
       bottom: 0;
       filter:url('#goo');
       // transform: rotate(19deg);
