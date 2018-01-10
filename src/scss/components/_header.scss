@@ -11,6 +11,7 @@ body {
   right: 0;
   z-index: 4;
   transition: transform 0.5s ease-in-out;
+  padding: 0 1rem;
 
   &::before {
     content: '';
@@ -117,12 +118,17 @@ body {
 @media (min-width: 56.25em) { // 900px
 
   .header {
+    transform: none !important;
+
+    &::before {
+      display: none;
+    }
 
     &__svg {
       display: none;
     }
 
-    &__wrapper {
+    &__content {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -141,6 +147,7 @@ body {
 
     &__logo {
       color: $lightOrange !important;
+      transition: opacity 0.5s ease-in-out;
     }
 
    
@@ -156,6 +163,15 @@ body {
       width: 31rem;
       height: 25rem;
       transform: translateX(-50%);
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    &--scrolled {
+
+      .header__logo {
+        opacity: 0;
+      }
+  
     }
 
   }

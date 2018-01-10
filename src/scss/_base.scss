@@ -10,6 +10,13 @@ a {
   position: relative;
   padding: 0 1rem;
   width: 100%;
+  max-width: 59rem;
+  margin: 0 auto;
+
+  + .wrapper {
+    margin-top: 1.5rem;
+  }
+  
 }
 
 

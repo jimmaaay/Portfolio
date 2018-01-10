@@ -1,5 +1,5 @@
 .about {
-  overflow: hidden;
+  // overflow: hidden; // Must be visible as chrome will not anchor to .title-anchor properly if this is set
   margin-bottom: 7rem;
 
   &__social {
@@ -23,6 +23,36 @@
       top: 2rem;
       right: 4.5rem;
     }
+  }
+
+}
+
+@media (min-width: 75em) { // 1200px
+
+  .about {
+
+    &__wrapper {
+      padding-right: calc(100% - 35.8rem);
+    }
+
+    &__social {
+      position: absolute;
+      right: -3rem;
+      top: 10rem;
+    }
+
+  }
+
+}
+
+@media (min-width: 88.75em) { // 1420px
+
+  .about {
+
+    &__wrapper {
+      padding-right: 23.2rem;
+    }
+
   }
 
 }

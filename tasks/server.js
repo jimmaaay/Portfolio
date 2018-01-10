@@ -30,6 +30,7 @@ module.exports.server = function server(cb) {
 
   const config = {
     server: 'dist',
+    ghostMode: false,
     middleware: [
       webpackDevMiddleware(bundler),
     ],
