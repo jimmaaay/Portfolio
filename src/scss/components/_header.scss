@@ -38,6 +38,10 @@ body {
     min-width: 23.75rem;
   }
 
+  &__content {
+    position: relative;
+  }
+
   &__logo {
     font-weight: 600;
     font-size: 1.125rem;

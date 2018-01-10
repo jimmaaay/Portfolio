@@ -12,11 +12,6 @@ a {
   width: 100%;
   max-width: 59rem;
   margin: 0 auto;
-
-  + .wrapper {
-    margin-top: 1.5rem;
-  }
-  
 }
 
 
@@ -81,6 +76,15 @@ main {
   
     }
 
+  }
+
+}
+
+@media (min-width: 56.25em) { // 900px
+
+  .title-anchor {
+    padding-top: 3rem;
+    margin-top: -3rem;
   }
 
 }
