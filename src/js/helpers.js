@@ -20,9 +20,9 @@ export const loadImage = (src) => {
   });
 };
 
-/* 
-  JSX is converted using babel-preset-react with the 'pragma' changed to domBuilder
-  this allows me to build dom objects using JSX with the below function
+/**
+ * JSX is converted using babel-preset-react with the 'pragma' changed to domBuilder
+ * this allows me to build dom objects using JSX with the below function 
 */
 export const domBuilder = (tag, props, ...children) => {
 

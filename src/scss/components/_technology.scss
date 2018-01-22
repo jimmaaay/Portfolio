@@ -24,3 +24,40 @@
   }
 
 }
+
+
+@media (min-width: 68.75em) { // 1100px
+
+  .technology {
+
+    &__items {
+      margin: 0;
+      padding: 0;
+    }
+
+    .d-carousel {
+
+      &__outer {
+        padding: 0;
+      }
+
+      &__inner {
+        padding: 0;
+      }
+
+      &__ul {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+      }
+
+      &__next,
+      &__prev {
+        display: none;
+      }
+
+    }
+
+  }
+
+}

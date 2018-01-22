@@ -1,7 +1,6 @@
 .hero {
   position: relative;
   margin-bottom: 3rem;
-  
 
   &__title {
     position: relative;
@@ -23,6 +22,7 @@
     overflow: hidden;
     position: relative;
     min-height: calc(100vh - 5.5rem);
+    z-index: 1;
   }
 
   &__content {
@@ -53,6 +53,10 @@
     bottom: 3.5rem;
     left: 0;
     right: 0;
+    display: inline-block;
+    background: transparent;
+    border: none;
+    margin: 0 auto;
   }
 
   &__arrow {

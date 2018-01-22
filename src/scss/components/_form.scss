@@ -1,5 +1,7 @@
-// Remove red outline round invalid inputs firefox 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/%3A-moz-ui-invalid
+/**
+ *  Remove red outline round invalid inputs firefox 
+ *  https://developer.mozilla.org/en-US/docs/Web/CSS/%3A-moz-ui-invalid
+ */
 :-moz-ui-invalid {
   box-shadow: none;
 }
@@ -21,6 +23,10 @@ textarea {
   display: block;
   resize: none;
   padding: 0.5rem;
+}
+
+button {
+  cursor: pointer;
 }
 
 .form {
@@ -47,12 +53,13 @@ textarea {
 
   label {
     position: absolute;
-    top: 0.5rem;
+    top: 0.9rem;
     left: 0.5rem;
     color: $darkOrange;
     font-size: 1.25rem;
     transition: transform 0.3s ease-in-out;
     transform-origin: left center;
+    line-height: 1;
   }
 
   &::after {

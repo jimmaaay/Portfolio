@@ -13,7 +13,7 @@ const manifests = function manifests (done) {
   const newObj = {};
   for (let key in both) {
     const data = both[key];
-    /*
+    /**
      * Couldn't figure out how to reference items with dots in their names within Hugo
      * so changed dots to underscores. E.g main.css to main_css
      */

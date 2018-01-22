@@ -1,13 +1,20 @@
 {{ partial "header" . }}
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none;">
-  <defs>
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-      <feBlend in="SourceGraphic" in2="goo" />
-    </filter>
-  </defs>
-</svg>
+
+{{/*
+  Hide the contents of the div with the following instead of display: none as it makes
+  the filter not work properly in firefox nightly
+*/}}
+<div style="height: 0;overflow:hidden;">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+</div>
   
 
   
@@ -45,14 +52,14 @@
           </h2>
         </div>
       </div>
-      <div class="hero__scroll">
+      <button class="hero__scroll">
         <svg viewBox="0 0 27.7 22.2" class="hero__arrow">
           <path style="fill:#FFFFFF;" d="M27.7,0H0l13.9,22.2L27.7,0z M23.5,2.4l-9.6,15.4L4.2,2.4H23.5z"/>
         </svg>
         <svg viewBox="0 0 65.4 59.1" class="hero__circle">
           <ellipse style="fill:#E87051;" cx="32.7" cy="29.5" rx="32.7" ry="29.5"/>
         </svg>
-      </div>
+      </button>
     </div>
 
     <div class="hero__animation">

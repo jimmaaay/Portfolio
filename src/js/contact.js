@@ -1,6 +1,6 @@
 const contactForm = document.querySelector('.contact__form');
 
-/* 
+/**
  * Was planning on using FormData but edge doesn't support parts
  * that I was gonna use :(
  */
