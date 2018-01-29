@@ -31,8 +31,9 @@
   .technology {
 
     &__items {
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
+      max-width: 48rem;
     }
 
     .d-carousel {
@@ -45,15 +46,54 @@
         padding: 0;
       }
 
+      &__item {
+        padding: 0;
+        margin: 0 3rem 3rem 0;
+
+        
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+
+      }
+
       &__ul {
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
         margin: 0;
       }
 
       &__next,
       &__prev {
         display: none;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: 93.75em) { // 1500px
+
+  .technology {
+
+    &__items {
+      max-width: 52rem;
+    }
+
+    .d-carousel {
+
+      &__item {
+
+        &:nth-child(4n) {
+          margin-right: 3rem;
+        }
+
+        &:nth-child(5n) {
+          margin-right: 0;
+        }
+
       }
 
     }

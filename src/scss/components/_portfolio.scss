@@ -120,3 +120,18 @@
   }
 
 }
+
+
+@media (min-width: 56.25em) { // 900px
+
+  .portfolio {
+    padding-top: 15%;
+
+    &::before {
+      top: 25%;
+    }
+
+
+  }
+
+}
