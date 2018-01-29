@@ -1,3 +1,13 @@
-<div>
-  {{ .Title }}
-</div>
+{{ partial "header" . }}
+
+<main class="portfolio-page">
+  <div class="wrapper">
+    <h1 class="portfolio-page__title">
+      {{ .Title }}
+      <a href="{{ .Params.link }}" class="button a-reset">View Project</a>
+    </h1>
+    {{ .Content }}
+  </div>
+</main>
+
+{{ partial "footer" . }}

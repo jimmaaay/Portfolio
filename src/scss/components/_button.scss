@@ -6,5 +6,13 @@
   padding: 0.75rem 1.5rem;
   color: #fff;
   background: $darkOrange;
+  transition: background 0.3s ease-in-out;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background: darken($darkOrange, 10%);
+  }
+
 }

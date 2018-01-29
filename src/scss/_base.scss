@@ -4,6 +4,46 @@
 
 a {
   text-decoration: none;
+  color: $darkOrange;
+}
+
+main {
+
+  a:not(.a-reset) {
+    position: relative;
+    padding-bottom: 4px;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: $darkOrange;
+      transform: scaleX(0);
+      transition: all 0.3s ease-in-out;
+      transform-origin: 0 0;
+    }
+
+
+    &:hover,
+    &:focus {
+
+      &::before {
+        transform: none;
+      }
+
+    }
+
+
+  }
+
+}
+
+img {
+  max-width: 100%;
 }
 
 .wrapper{

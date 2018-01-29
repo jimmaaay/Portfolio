@@ -60,6 +60,7 @@ button {
     transition: transform 0.3s ease-in-out;
     transform-origin: left center;
     line-height: 1;
+    pointer-events: none;
   }
 
   &::after {

@@ -10,7 +10,7 @@ export default (observer) => {
   const makeItem = ({ url, imgSrc, imgAlt, title}) => {
     return (
       <li class="portfolio__item">
-        <a href={url} class="portfolio__item__a">
+        <a href={url} class="portfolio__item__a a-reset">
           <div class="loader"></div>
           <img data-src={imgSrc} alt={imgAlt} class="portfolio__item__image"/>
           <div class="portfolio__item__overlay">
@@ -22,6 +22,7 @@ export default (observer) => {
   };
 
   const items = document.querySelector('.portfolio__items');
+  if (items == null) return;
   const total = parseInt(items.getAttribute('data-total'), 10);
   const loadMoreButton = document.querySelector('.portfolio__load-more');
 
