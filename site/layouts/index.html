@@ -141,42 +141,11 @@
           <div class="d-carousel__inner">
             <div>
               <ul class="d-carousel__ul reset">
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="css"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="docker"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="git"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="gulp"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="html"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="js"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="node"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="npm"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="php"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="react"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="sass"></div>
-                </li>
-                <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="wordpress"></div>
-                </li>
+                {{ range .Params.tech }}
+                  <li class="d-carousel__item">
+                    <div class="technology__item" data-icon="{{ . }}"></div>
+                  </li>
+                {{ end }}
               </ul>
             </div>
           </div>

@@ -1,0 +1,15 @@
+---
+tech:
+  - css
+  - docker
+  - git
+  - gulp
+  - html
+  - js
+  - node
+  - npm
+  - php 
+  - react
+  - sass
+  - wordpress
+---
