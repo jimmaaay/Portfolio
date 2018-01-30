@@ -97,35 +97,25 @@
       <h1 class="t-center title-anchor" id="portfolio">Portfolio</h1>
       <p class="subtitle">A few interesting things I’ve made. To see work I’ve done for Agencies contact me. </p>
     </div>
-    <ul class="portfolio__items reset" data-total="4">
-      <li class="portfolio__item">
-        <a href="#" class="portfolio__item__a a-reset">
-          <div class="loader"></div>
-          <img data-src="/img/snowy-shop-scene.png" alt="Snowy Shop Scene" class="portfolio__item__image"/>
-          <div class="portfolio__item__overlay">
-            <h3>Snowy Shop Scene</h3>
-          </div>
-        </a>
-      </li>
-      <li class="portfolio__item">
-        <a href="#" class="portfolio__item__a a-reset">
-          <div class="loader"></div>
-          <img data-src="/img/crime-map.jpg" alt="Crime Map" class="portfolio__item__image"/>
-          <div class="portfolio__item__overlay">
-            <h3>Crime Map</h3>
-          </div>
-        </a>
-      </li>
-      <li class="portfolio__item">
-        <a href="#" class="portfolio__item__a a-reset">
-          <div class="loader"></div>
-          <img data-src="/img/mulno.jpg" alt="Mulno" class="portfolio__item__image"/>
-          <div class="portfolio__item__overlay">
-            <h3>Mulno</h3>
-          </div>
-        </a>
-      </li>
+
+    {{ $portfolio := .Site.GetPage "section" "portfolio" }}
+
+    <ul class="portfolio__items reset" data-total="{{ len $portfolio.Pages }}">
+
+      {{ range first 3 $portfolio.Pages }}
+        <li class="portfolio__item">
+          <a href="{{ .Permalink }}" class="portfolio__item__a a-reset">
+            <div class="loader"></div>
+            <img data-src="{{ .Params.listImage }}" alt="{{ .Title }}" class="portfolio__item__image"/>
+            <div class="portfolio__item__overlay">
+              <h3>{{ .Title }}</h3>
+            </div>
+          </a>
+        </li>
+      {{ end }}
+
     </ul>
+
     <div class="t-center">
       <button class="button portfolio__load-more" style="display:none;">Load More</button>
     </div>
