@@ -1,5 +1,26 @@
 .portfolio-page {
-  padding-bottom: 4rem;
+  
+  &__banner {
+    position: relative;
+    margin-top: -6.25rem;
+    margin-bottom: 3rem;
+    height: 20rem;
+    background: $lightOrange;
+
+    &__wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      color: #fff;
+    }
+
+  }
 
   &__title {
 
@@ -7,6 +28,20 @@
       vertical-align: middle;
     }
 
+  }
+
+
+  main {
+    padding-bottom: 4rem;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .header__logo {
+    color: #fff !important;
   }
 
 }

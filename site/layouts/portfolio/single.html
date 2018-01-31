@@ -1,11 +1,21 @@
-{{ partial "header" . }}
+{{ partial "header" (dict "class" "portfolio-page") }}
 
 <main class="portfolio-page">
+  
+  {{/*
+    TODO: Add metaball animation behind the banner
+    TODO: Add section that shows what the technologies/tools used were
+  */}}
+  <div class="portfolio-page__banner">
+    <div class="wrapper portfolio-page__banner__wrapper">
+      <h1 class="portfolio-page__title">
+        {{ .Title }}
+        <a href="{{ .Params.link }}" class="button a-reset">View Project</a>
+      </h1>
+    </div>
+  </div>
+
   <div class="wrapper">
-    <h1 class="portfolio-page__title">
-      {{ .Title }}
-      <a href="{{ .Params.link }}" class="button a-reset">View Project</a>
-    </h1>
     {{ .Content }}
   </div>
 </main>

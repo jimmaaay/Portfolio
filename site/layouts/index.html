@@ -1,9 +1,10 @@
-{{ partial "header" . }}
+{{ partial "header" (dict "class" "home-page") }}
 
 {{/*
   Hide the contents of the div with the following instead of display: none as it makes
   the filter not work properly in firefox nightly
 */}}
+
 <div style="height: 0;overflow:hidden;">
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
     <defs>
