@@ -28,17 +28,17 @@ export default (events) => {
       e.preventDefault();
       const partialUrl = `/partials${url.pathname}`;
       const time = performance.now();
-
       mainTag.classList.add('hidden');
       history.pushState({}, null, url.href);
       events.emit('CHANGING_PAGE');
-      // window.scrollTo(0,0);
       
       // TODO: Store response for browsers that do not support service worker?
       fetch(partialUrl)
         .then(res => res.text())
         .then((html) => {
+          // Wait at least 1s before changing the content
           const duration = 1000 - (performance.now() - time);
+
           if (duration < 0) return changeContent(html);
           setTimeout(() => {
             changeContent(html);
@@ -57,8 +57,18 @@ export default (events) => {
   mainTag.addEventListener('transitionend', (e) => {
     const { target } = e;
     if (target !== mainTag) return;
+
+    /*
+     * When this event was firing for the transform property in chrome
+     * the top position of the anchor was returning the wrong position.
+     * So only listening when the opacity property was changed. 
+     */
     if (e.propertyName !== 'opacity') return;
     if (mainTag.classList.contains('hidden')) {
+      /*
+       * Don't want user to be halfway down the page when the 
+       * content changes.
+       */
       scrollTo(0, 0);
     } else if(location.hash !== '') {
       const element = document.querySelector(location.hash);
