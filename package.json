@@ -34,5 +34,8 @@
     "webpack": "^3.10.0",
     "webpack-assets-manifest": "^1.0.0",
     "webpack-dev-middleware": "^2.0.3"
+  },
+  "dependencies": {
+    "eventemitter3": "^3.0.0"
   }
 }

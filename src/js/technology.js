@@ -1,33 +1,27 @@
-const technology = document.querySelector('.technology');
+import { callbackKey } from './helpers'
 
-if (technology != null) {
-  const run = () => {
-    const items = Array.from(document.querySelectorAll('.technology__item'));
-    items.forEach(el => {
-      const icon = el.getAttribute('data-icon');
-      const html = `
-        <svg viewBox="0 0 190 190">
-          <use xlink:href="/img/svgSprites/tech.svg#${icon}"
-        </svg>
-      `;
+export default (observer) => {
 
-      el.innerHTML = html;
-    });
-  };
+  const technology = document.querySelector('.technology');
 
+  if (technology != null) {
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(({ target, isIntersecting }) => {
+    technology[callbackKey] = ({ target, isIntersecting }, observer) => {
       if (! isIntersecting) return;
-      run();
+      const items = Array.from(document.querySelectorAll('.technology__item'));
+      items.forEach(el => {
+        const icon = el.getAttribute('data-icon');
+        const html = `
+          <svg viewBox="0 0 190 190">
+            <use xlink:href="/img/svgSprites/tech.svg#${icon}"
+          </svg>
+        `;
+
+        el.innerHTML = html;
+      });
       observer.unobserve(target);
-    });
-  }, {
-    threshold: Array.from(new Array(50)).map((_, i) => {
-      return i * 0.02;
-    })
-  });
+    };
 
-
-  observer.observe(technology);
+    observer.observe(technology);
+  }
 }

@@ -8,6 +8,7 @@ a {
 }
 
 main {
+  transition: all 0.3s ease-in-out;
 
   a:not(.a-reset) {
     position: relative;
@@ -38,6 +39,11 @@ main {
     }
 
 
+  }
+
+  &.hidden {
+    opacity: 0;
+    transform: translateY(5rem);
   }
 
 }

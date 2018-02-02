@@ -1,19 +1,20 @@
-<main class="portfolio-page">
-  
-  {{/*
-    TODO: Add metaball animation behind the banner
-    TODO: Add section that shows what the technologies/tools used were
-  */}}
-  <div class="portfolio-page__banner">
-    <div class="wrapper portfolio-page__banner__wrapper">
-      <h1 class="portfolio-page__title">
-        {{ .Title }}
-        <a href="{{ .Params.link }}" class="button a-reset">View Project</a>
-      </h1>
-    </div>
-  </div>
+<script class="page-variables" type="application/json">
+  {"className": "home-page"}
+</script>
 
-  <div class="wrapper">
-    {{ .Content }}
+{{/*
+  TODO: Add metaball animation behind the banner
+  TODO: Add section that shows what the technologies/tools used were
+*/}}
+<div class="portfolio-page__banner">
+  <div class="wrapper portfolio-page__banner__wrapper">
+    <h1 class="portfolio-page__title">
+      {{ .Title }}
+      <a href="{{ .Params.link }}" class="button a-reset">View Project</a>
+    </h1>
   </div>
-</main>
+</div>
+
+<div class="wrapper">
+  {{ .Content }}
+</div>

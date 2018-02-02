@@ -1,7 +1,16 @@
 import lazyLoad from './lazyload';
 import { parents, domBuilder } from './helpers';
 
-export default (observer) => {
+document.addEventListener('lazyload:loaded', (e) => {
+  const { target } = e;
+  const item = parents(target, '.portfolio__item');
+  if (item === false) return;
+  const loader = item.querySelector('.loader');
+  if (loader == null) return;
+  loader.parentElement.removeChild(loader);
+});
+
+export default () => {
 
   const INITIAL_NO_SHOWING = 3;
   let noShowing = INITIAL_NO_SHOWING;
@@ -41,8 +50,6 @@ export default (observer) => {
 
       noShowing++;
 
-      observer.observe(item.querySelector('img'));
-
       if (noShowing === total) {
         loadMoreButton.removeEventListener('click', loadClick);
         loadMoreButton.parentElement.removeChild(loadMoreButton);
@@ -51,16 +58,12 @@ export default (observer) => {
     };
     loadMoreButton.style.display = '';
     loadMoreButton.addEventListener('click', loadClick);
-  }
 
-  document.addEventListener('lazyload:loaded', (e) => {
-    const { target } = e;
-    const item = parents(target, '.portfolio__item');
-    if (item === false) return;
-    const loader = item.querySelector('.loader');
-    if (loader == null) return;
-    loader.parentElement.removeChild(loader);
-  });
+    return () => {
+      loadMoreButton.removeEventListener('click', loadClick);
+    }
+
+  }
 
 
 }

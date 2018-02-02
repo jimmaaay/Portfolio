@@ -1,3 +1,20 @@
+// Test via a getter in the options object to see if the passive property is accessed
+let sp = false;
+try {
+  const opts = Object.defineProperty({}, 'passive', {
+    get: function() {
+      sp = true;
+    }
+  });
+  window.addEventListener("testPassive", null, opts);
+  window.removeEventListener("testPassive", null, opts);
+} catch (e) {}
+
+export const supportsPassive = () => sp;
+
+// Callback key put onto elements
+export const callbackKey = Symbol('intersection');
+
 // use similar to $($0).parents('.selector')
 export const parents = (e, selector) => {
   let el = e;
