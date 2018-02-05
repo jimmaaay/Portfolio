@@ -55,6 +55,10 @@ body {
     &:focus {
       text-decoration: none;
     }
+
+    .page-transition & {
+      opacity: 0 !important;
+    }
     
   }
 
