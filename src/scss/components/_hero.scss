@@ -13,16 +13,16 @@
     font-weight: 600;
   }
 
-  &__animation {
-    display: none;
-  }
-
   &__stuff {
     padding: 4.5rem 0 10rem;
     overflow: hidden;
     position: relative;
     min-height: calc(100vh - 5.5rem);
     z-index: 1;
+  }
+
+  &__meta-balls {
+    display: none;
   }
 
   &__content {
@@ -45,7 +45,7 @@
     top: 3.75rem;
     left: 9rem;
     width: 21.875rem;
-    max-width: 41.9rem;
+    max-width: 32rem;
   }
 
   &__scroll {
@@ -100,66 +100,14 @@
 
   .hero {
 
-    &__animation {
-      position: absolute;
-      display: block;
-      right: 0;
-      left: 0;
-      top: -6.25rem;
-      bottom: 0;
-      filter:url('#goo');
-      // transform: rotate(19deg);
-
-      &__1,
-      &__2,
-      &__3 {
-        display: inline-block;
-        border-radius: 50%;
-        background: $darkOrange;
-        position: absolute;
-      }
-
-      &__1 {
-        animation: heroAnimation1 10s ease-in-out;
-        border-bottom-left-radius: 30%;
-        transform: rotate(-100deg);
-        left: -6rem;
-        top: 20rem;
-      }
-
-      &__2 {
-        animation: heroAnimation2 10s ease-in-out;
-        border-bottom-left-radius: 45%;
-        border-bottom-right-radius: 45%;
-      }
-
-
-      &__1,
-      &__2 {
-        width: 10rem;
-        height: 10rem;
-      }
-      
-
-      &__2 {
-        left: -2rem;
-        top: 22rem;
-      }
-
-      &__3 {
-        animation: heroAnimation3 5s ease-in-out;
-        animation-delay: 4s;
-        width: 1rem;
-        height: 1rem;
-        top: 7.5rem;
-        left: 9.5rem;
-      }
-
-      // &__svg {
-      //   width: 10rem;
-      // }
-
-    }
+   &__meta-balls {
+     display: block;
+     max-width: 16rem;
+     position: absolute;
+     top: 14rem;
+     left: 0;
+     width: 35%;
+   }
 
   }
 
@@ -171,7 +119,19 @@
   .hero {
 
     &__stuff {
-      padding-bottom: 36%;
+      padding-bottom: 40%;
+    }
+
+  }
+
+}
+
+@media (min-width: 75em) { // 1200px
+
+  .hero {
+
+    &__svg {
+      right: -9.6rem;
     }
 
   }
@@ -179,21 +139,23 @@
 }
 
 
-@keyframes heroAnimation1 {
-  to {
-    transform: translateX(1rem) translateY(1rem) rotate(-100deg);
-  }
-}
+@media (min-width: 87.5em) { // 1400px
 
+  .hero {
 
-@keyframes heroAnimation2 {
-  to {
-    transform: translateX(10rem) translateY(9rem);
-  }
-}
+    &__stuff {
+      padding-bottom: 22.4rem;
+    }
 
-@keyframes heroAnimation3 {
-  to {
-    transform: translateY(-10rem)
+    &__title {
+      font-size: 3.2rem;
+    }
+
+    &__content {
+      max-width: 27rem;
+      padding-top: 4rem;
+    }
+
   }
+
 }
