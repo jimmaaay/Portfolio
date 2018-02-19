@@ -13,7 +13,7 @@ export default (observer) => {
         const icon = el.getAttribute('data-icon');
         const html = `
           <svg viewBox="0 0 190 190">
-            <use xlink:href="/img/svgSprites/tech.svg#${icon}"
+            <use xlink:href="/img/svgSprites/tech.svg#${icon}" />
           </svg>
         `;
 

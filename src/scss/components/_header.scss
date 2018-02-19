@@ -153,11 +153,30 @@ body {
 
     &__nav {
       position: relative;
+      clip-path: url(#nav-clippath);
+      background: $darkOrange;
       z-index: 1;
+      height: 6rem;
+      width: 19.6rem;
+      margin-right: -1rem;
+      padding-left: 2.3rem;
+
+      ul {
+        height: 100%;
+      }
 
       a {
         font-size: 0.75rem;
         color: #fff;
+        height: 100%;
+        transition: all 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+          background: #fff;
+          color: $darkOrange;
+        }
+
       }
 
     }
@@ -169,19 +188,6 @@ body {
 
    
 
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 1rem;
-      right: -23rem;
-      border-radius: 50%;
-      background: $darkOrange;
-      width: 31rem;
-      height: 25rem;
-      transform: translateX(-50%);
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
 
     &--scrolled {
 

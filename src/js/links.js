@@ -64,8 +64,8 @@ export default (events) => {
 
       // TODO: don't run the code in /project dir
       if (
-        url.origin !== location.origin 
-        || (url.origin === location.origin && url.pathname === location.pathname)
+        url.origin !== location.origin // Not the same domain
+        || (url.origin === location.origin && url.pathname === location.pathname) // Same page
       ) return;
 
       e.preventDefault();
@@ -77,30 +77,25 @@ export default (events) => {
 
   });
 
-  // Scroll to top of page when mainTag content is hidden
-  mainTag.addEventListener('transitionend', (e) => {
-    const { target } = e;
-    if (target !== mainTag) return;
-
-    /**
-     * When this event was firing for the transform property in chrome
-     * the top position of the anchor was returning the wrong position.
-     * So only listening when the opacity property was changed. 
-     */
-    if (e.propertyName !== 'opacity') return;
-    if (mainTag.classList.contains('hidden')) {
-
+  // Scroll down the page before the page is unhidden.
+  events.on('CHANGED_PAGE', () => {
+    if (location.hash === '') {
       /**
        * Don't want user to be halfway down the page when the 
        * content changes.
        */
       scrollTo(0, 0);
-    } else if(location.hash !== '') {
-      const element = document.querySelector(location.hash);
-      if (element == null) return scrollTo(0,0);
-      const { top } = element.getBoundingClientRect();
-      scrollTo(0, top);
+      return;
     }
+    // Scroll down to the element linked to with hash link
+    const { fontSize } = window.getComputedStyle(document.documentElement);
+    const element = document.querySelector(location.hash);
+    if (element == null) return scrollTo(0,0);
+    const parsedFontSize = parseFloat(fontSize.replace('px', ''), 10);
+    const { top } = element.getBoundingClientRect();
+    
+    // Scolling to the position of the content after the transition has happened
+    scrollTo(0, top - (5 * parsedFontSize));
   });
 
   window.addEventListener('popstate', (e) => {
