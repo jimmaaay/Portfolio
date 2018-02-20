@@ -8,6 +8,7 @@ const manifests = require('./manifests');
 const svgSpriter = require('./svgSpriter');
 const images = require('./images');
 const other = require('./other');
+const minifyHTML = require('./minifyHTML');
 
 module.exports.dev = gulp.series(
   clean,
@@ -19,5 +20,6 @@ module.exports.build = gulp.series(
   clean, 
   gulp.parallel(scripts, styles, svgSpriter, images, other),
   manifests,
-  hugo
+  hugo,
+  minifyHTML
 );

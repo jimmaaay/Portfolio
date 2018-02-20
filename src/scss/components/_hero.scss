@@ -52,6 +52,13 @@
     background: transparent;
     border: none;
     margin: 0 auto;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      transform: translateY(-0.5rem);
+    }
+    
   }
 
   &__arrow {
