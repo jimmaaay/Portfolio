@@ -16,7 +16,10 @@ export default () => {
   let noShowing = INITIAL_NO_SHOWING;
 
   // Read comment on domBuilder fn about JSX
-  const makeItem = ({ url, imgSrc, imgAlt, title}) => {
+  const makeItem = (obj) => {
+
+    // Destructure here as UglifyJS wasn't liking destructuring in the parenthesis
+    const { url, imgSrc, imgAlt, title } = obj;
     return (
       <li class="portfolio__item">
         <a href={url} class="portfolio__item__a a-reset">
