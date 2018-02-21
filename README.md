@@ -2,6 +2,10 @@
 
 My portfolio site built using [hugo](https://gohugo.io/)
 
+## Requiements
+
+* Node >= 8
+
 ## Commands
 
 * `npm run dev` - Starts a browserSync server and will reload on content/asset changes
