@@ -6,6 +6,6 @@ link : /project/mulno
 listImage: /img/portfolio/mulno/mulno--list.jpg
 ---
 
-This is a homepage concept which I designed in Illustrator and built for a fictitious client, Mulno.
+This project is a homepage concept which I initially designed in Illustrator and then developed. Mulno was a ficticious client that sold studio lighting.
 
 ![Mulno](/img/portfolio/mulno/mulno--list.jpg)

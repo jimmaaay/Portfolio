@@ -6,7 +6,11 @@ link: /project/crime-map/
 listImage: /img/portfolio/crime-map/crime-map--list.jpg
 ---
 
-This is a google map where you can search for areas in the UK and will show the crime data associated there. 
+A google map where you can get crime statistics in your area. 
+
+## How It Works
+
+The map allows you to search for your town / city and then see the crime statistics there. This doesn't work so well with larger cities **e.g Birmingham / London** ( something I plan on fixing ).
 
 ## API's Used:
 
