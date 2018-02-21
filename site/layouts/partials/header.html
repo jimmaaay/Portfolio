@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $.Site.Title }}</title>
-    <link rel="stylesheet" href="/styles/{{ .Site.Data.manifest.main_css | default "main.css" }}"/>
+    <link rel="stylesheet" href="/styles/{{ if isset .manifest "main_css" }}{{ .manifest.main_css }}{{ else }}main.css{{ end }}"/>
     {{/* Preload the fonts required by the site for faster load times */}}
     <link rel="preload" href="/other/fonts/Metropolis-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/other/fonts/Metropolis-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <script src="/js/{{ .Site.Data.manifest.main_js | default "main.js" }}" defer ></script>
+    <script src="/js/{{ if isset .manifest "main_js" }}{{ .manifest.main_js }}{{ else }}main.js{{ end }}" defer ></script>
   </head>
   <body class="{{ .class }}">
+
 
     <div style="height: 0;overflow:hidden;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 497.5 127.1">

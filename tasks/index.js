@@ -20,6 +20,6 @@ module.exports.build = gulp.series(
   clean, 
   gulp.parallel(scripts, styles, svgSpriter, images, other),
   manifests,
-  hugo,
-  minifyHTML
+  hugo
+  // minifyHTML
 );

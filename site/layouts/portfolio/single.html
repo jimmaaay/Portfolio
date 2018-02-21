@@ -1,4 +1,5 @@
-{{ partial "header" (dict "class" "portfolio-page") }}
+{{ $manifest := $.Site.Data.manifest }}
+{{ partial "header" (dict "class" "portfolio-page" "manifest" $manifest) }}
   
 {{/*
   TODO: Add metaball animation behind the banner
