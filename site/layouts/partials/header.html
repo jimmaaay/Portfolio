@@ -9,6 +9,12 @@
     <link rel="preload" href="/other/fonts/Metropolis-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/other/fonts/Metropolis-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <script src="/js/{{ if isset .manifest "main_js" }}{{ .manifest.main_js }}{{ else }}main.js{{ end }}" defer ></script>
+    {{/* Page variables for JS file */}}
+    <script>
+      var pageVariables = {
+        techSvgURI: '/img/svgSprites/{{ if isset .manifest "tech_svg" }}{{ .manifest.tech_svg }}{{ else }}tech.svg{{ end }}',
+      };
+    </script>
   </head>
   <body class="{{ .class }}">
 

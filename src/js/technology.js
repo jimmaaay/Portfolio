@@ -5,6 +5,7 @@ export default (observer) => {
   const technology = document.querySelector('.technology');
 
   if (technology != null) {
+    const { techSvgURI } = pageVariables;
 
     technology[callbackKey] = ({ target, isIntersecting }, observer) => {
       if (! isIntersecting) return;
@@ -13,7 +14,7 @@ export default (observer) => {
         const icon = el.getAttribute('data-icon');
         const html = `
           <svg viewBox="0 0 190 190">
-            <use xlink:href="/img/svgSprites/tech.svg#${icon}" />
+            <use xlink:href="${techSvgURI}#${icon}" />
           </svg>
         `;
 
