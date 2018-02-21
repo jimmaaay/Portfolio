@@ -2,6 +2,9 @@
 node_modules
 dist
 
+# Don't wanna use lock files
+package-lock.json
+
 # temp files created in build process
 gulp-manifest.json
 webpack-manifest.json
