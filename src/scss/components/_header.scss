@@ -13,6 +13,10 @@ body {
   transition: transform 0.5s ease-in-out;
   padding: 0 1rem;
   pointer-events: none;
+  
+  // These 2 props help improve scrolling performance
+  backface-visibility: hidden;
+  will-change: transform;
 
   &::before {
     content: '';
@@ -159,7 +163,6 @@ body {
       height: 6rem;
       width: 19.6rem;
       margin-right: -1rem;
-      padding-left: 2.3rem;
 
       ul {
         height: 100%;
@@ -175,6 +178,18 @@ body {
         &:focus {
           background: #fff;
           color: $darkOrange;
+        }
+
+      }
+
+      li {
+
+        &:first-child {
+
+          a {
+            padding-left: 3rem;
+          }
+
         }
 
       }

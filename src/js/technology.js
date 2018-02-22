@@ -1,11 +1,14 @@
+import dCarousel from 'd-carousel';
 import { callbackKey } from './helpers'
 
 export default (observer) => {
 
   const technology = document.querySelector('.technology');
+  const carousel = document.querySelector('.d-carousel');
+  let initalisedCarousel = false;
 
   if (technology != null) {
-    const { techSvgURI } = pageVariables;
+    const { techSvgURI } = window.pageVariables;
 
     technology[callbackKey] = ({ target, isIntersecting }, observer) => {
       if (! isIntersecting) return;
@@ -25,4 +28,17 @@ export default (observer) => {
 
     observer.observe(technology);
   }
+
+  if (carousel != null) {
+    initalisedCarousel = dCarousel(carousel, {
+      paddingLeft: true,
+    });
+  }
+
+  return () => {
+    if (initalisedCarousel !== false) {
+      initalisedCarousel.destroy();
+    }
+  };
+
 }

@@ -38,6 +38,7 @@
     "webpack-dev-middleware": "^2.0.3"
   },
   "dependencies": {
+    "d-carousel": "^1.0.6",
     "eventemitter3": "^3.0.0"
   }
 }

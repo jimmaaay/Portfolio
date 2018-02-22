@@ -1,15 +1,14 @@
 import EventEmitter from 'eventemitter3';
-import { supportsPassive, callbackKey } from './helpers';
+import { callbackKey } from './helpers';
 import lazyLoad from './lazyload';
 import portfolioInit from './portfolio-items';
-import dCarousel from './vendor/d-carousel';
 import techInit from './technology';
 import linksInit from './links';
 import './form';
 import './contact';
+import './header';
 
 const events = new EventEmitter();
-const header = document.querySelector('.header');
 let functionsToDestroy = [];
 
 const observer = new IntersectionObserver((entries, observer) => {
@@ -33,31 +32,16 @@ const destroyFunctions = () => {
 
 const initFunctions = () => {
   const portfolioDestroy = portfolioInit();
+  const techDestroy = techInit(observer);
   if (typeof portfolioDestroy === 'function') functionsToDestroy.push(portfolioDestroy);
+  functionsToDestroy.push(techDestroy);
   lazyLoad(Array.from(document.querySelectorAll('img[data-src]')), observer);
-  techInit(observer);
 };
 
-// TODO: Add a destroy function to dCarousel
-// const carousel = document.querySelector('.d-carousel');
-// if (carousel != null) {
-//   dCarousel(carousel, {
-//     paddingLeft: true,
-//   });
-// }
+
 
 linksInit(events);
 initFunctions();
 
 events.on('CHANGING_PAGE', destroyFunctions);
 events.on('CHANGED_PAGE', initFunctions);
-
-if (header != null) {
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset === 0) {
-      header.classList.remove('header--scrolled');
-    } else {
-      header.classList.add('header--scrolled');
-    }
-  }, supportsPassive ? { passive: true } : false);
-}
