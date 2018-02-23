@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><title>Crime Map | Portfolio | Jimmy Thompson</title><script>(function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-71579515-1', 'auto');
+    ga('send', 'pageview');</script><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="main.css" type="text/css"></head><body><link href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 290 290" x="0px" xml:space="preserve" y="0px" style="display:none"><symbol id="menu" viewBox="0 0 290 290"><rect height="70" width="70" y="220"/><rect height="70" width="70" y="110"/><rect height="70" width="70"/><rect height="70" width="70" x="110" y="220"/><rect height="70" width="70" x="110" y="110"/><rect height="70" width="70" x="110"/><rect height="70" width="70" x="220" y="220"/><rect height="70" width="70" x="220" y="110"/><rect height="70" width="70" x="220"/></symbol></svg><div class="container"><button class="map-overlay-toggle map-overlay-toggle--open"><svg class="map-overlay-toggle__icon map-overlay-toggle__icon--default" viewBox="0 0 100 125"><use class="menu" xlink:href="#menu" x="0" y="0"/></svg> <svg class="map-overlay-toggle__icon map-overlay-toggle__icon--active" viewBox="0 0 100 125"><use class="menu" xlink:href="#menu" x="0" y="0"/></svg></button><div class="map-overlay"><div class="map-overlay__search"><input type="text" id="input" class="map-overlay__input"><select name="year" class="map-overlay__year-select"></select><select name="month" class="map-overlay__month-select"></select><button type="button" class="map-overlay__button">Search</button></div><div class="map-overlay__police-data"></div></div><div class="map"></div></div><!-- marker icon <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> --><!-- MENU ICON  <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> --><script type="text/javascript">if (document.body.classList === undefined) {
+          var $msg = document.createElement("DIV");
+          $msg.id = "error-message";
+          $msg.innerText = "Please update your browser to view / use this correctly";
+          document.body.appendChild($msg);
+        }
+        //window.debug = true;// enable for dev locally</script><script src="main.js"></script><script src="/portfolio/main.js" async></script><script>if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+        .then(function(reg){
+          console.log('Registration succedded', reg);
+        }).catch(function(err){
+          console.log('Registration failed', err);
+        });
+      }</script></body></html>

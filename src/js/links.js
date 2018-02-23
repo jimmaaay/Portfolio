@@ -66,6 +66,7 @@ export default (events) => {
       if (
         url.origin !== location.origin // Not the same domain
         || (url.origin === location.origin && url.pathname === location.pathname) // Same page
+        || url.pathname.indexOf('/project/') === 0 // don't run in project dir
       ) return;
 
       e.preventDefault();

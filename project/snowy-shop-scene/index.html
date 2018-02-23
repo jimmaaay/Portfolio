@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><title>Snowy Shop Scene | Portfolio | Jimmy Thompson</title><script>(function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-71579515-1', 'auto');
+    ga('send', 'pageview');</script><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="main.css" type="text/css"></head><body><div id="scene"><section class="weather" id="weather-background"><span class="weather__snow weather__snow--style-1"></span> <span class="weather__snow weather__snow--style-2"></span> <span class="weather__snow weather__snow--style-3"></span> <span class="weather__snow weather__snow--style-4"></span></section><section class="weather" id="weather-foreground"></section><section id="shops"><div class="shop shop--style-1"><div class="shop__chimney"></div><div class="shop__roof"></div><div class="shop__wrapper"><div class="shop__attic"></div><div class="shop__first-floor"><div class="shop__window shop__window--style-1"><span class="shop__window-line"></span></div><div class="shop__window shop__window--style-1"><span class="shop__window-line"></span></div><div class="shop__window shop__window--style-1"><span class="shop__window-line"></span></div></div><div class="shop__ground-floor"><div class="shop__awning"></div><div class="shop__door"></div><div class="shop__window shop__window--style-2"><span class="shop__window-line shop__window-line--vertical"></span> <span class="shop__window-line shop__window-line--vertical"></span> <span class="shop__window-line shop__window-line--vertical"></span> <span class="shop__window-line shop__window-line--horizontal"></span> <span class="shop__window-line shop__window-line--horizontal"></span></div></div></div></div><div class="shop shop--style-2"><div class="shop__chimney"></div><div class="shop__chimney"></div><div class="shop__chimney"></div><div class="shop__chimney"></div><div class="shop__wrapper"><div class="shop__roof"></div><div class="shop__attic"></div><div class="shop__second-floor"><div class="shop__window shop__window--style-1"></div><div class="shop__window shop__window--style-1"></div><div class="shop__window shop__window--style-1"></div><div class="shop__window shop__window--style-1"></div></div><div class="shop__first-floor"><div class="shop__window shop__window--style-1"></div><div class="shop__window shop__window--style-1"></div><div class="shop__window shop__window--style-1"></div><div class="shop__window shop__window--style-1"></div></div><div class="shop__ground-floor"><div class="shop__banner">Flying Dutchman</div><div class="shop__flex-container"><div class="shop__window shop__window--style-2"></div><div class="shop__window shop__window--style-2"></div><div class="shop__door"></div></div></div></div></div><div class="shop shop--style-3"><div class="shop__chimney"></div><div class="shop__roof"></div><div class="shop__attic"><div class="shop__window shop__window--style-2"></div></div><div class="shop__wrapper"><div class="shop__first-floor"><div class="shop__window shop__window--style-1"><span class="shop__window-line"></span> <span class="shop__window-line"></span></div><div class="shop__window shop__window--style-1"><span class="shop__window-line"></span> <span class="shop__window-line"></span></div></div><div class="shop__ground-floor"><div class="shop__banner"><span class="shop__banner-text">Coffee House</span></div><div class="shop__awning"></div><div class="shop__flex-container"><div class="shop__window shop__window--style-3"></div><div class="shop__window shop__window--style-3"></div><div class="shop__door"></div></div></div></div></div></section><section id="street"><div class="tree tree--style-1"><div class="tree__trunk"></div><div class="tree__leaves"></div><div class="tree__branch"></div><div class="tree__branch"></div><div class="tree__branch"></div></div><div class="tree tree--style-2"><div class="tree__leaves-top"></div><div class="tree__leaves-middle"></div><div class="tree__leaves-bottom"></div><div class="tree__trunk"></div></div><div class="pavement"></div></section></div><script type="text/template" id="snow-animation">@keyframes snow{
+          from{
+            -webkit-transform:translate(0,0);
+            transform:translate(0,0);
+          }
+          to{
+            -webkit-transform:translate(0,PLACEHOLDER);
+            transform:translate(0,PLACEHOLDER);
+          }
+        }
+    
+    
+        @-webkit-keyframes snow{
+          from{
+            -webkit-transform:translate(0,0);
+            transform:translate(0,0);
+          }
+          to{
+            -webkit-transform:translate(0,PLACEHOLDER);
+            transform:translate(0,PLACEHOLDER);
+          }
+        }</script><script src="main.js"></script><script src="/portfolio/main.js" async></script><script>if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+        .then(function(reg){
+          console.log('Registration succedded', reg);
+        }).catch(function(err){
+          console.log('Registration failed', err);
+        });
+      }</script></body></html>
