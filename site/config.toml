@@ -22,3 +22,4 @@ isHTML = true
 [outputs]
   home = ["HTML", "Partials"]
   page = ["HTML", "Partials"]
+  section = ["HTML", "JSON"]

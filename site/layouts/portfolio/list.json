@@ -1,0 +1,4 @@
+[
+  {{- $links := apply (where .Data.Pages "Kind" "page") "partial" "portfolio-item.json" "." -}}
+  {{- $clean := apply $links "chomp" "." -}}
+  {{ delimit $clean "," }}]

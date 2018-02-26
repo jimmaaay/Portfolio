@@ -1,0 +1,5 @@
+{
+  "title": "{{ .Title }}",
+  "link": "{{ .Params.link }}",
+  "listImage": "{{ .Params.listImage }}"
+}
