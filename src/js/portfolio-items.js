@@ -10,10 +10,18 @@ document.addEventListener('lazyload:loaded', (e) => {
   loader.parentElement.removeChild(loader);
 });
 
+let portfolioJSON = false;
+
 export default () => {
 
   const INITIAL_NO_SHOWING = 3;
   let noShowing = INITIAL_NO_SHOWING;
+
+  const fetchPortfolioJSON = () => {
+    return fetch('/portfolio/index.json')
+      .then(_ => _.json())
+      .then(_ => portfolioJSON = _);
+  }
 
   // Read comment on domBuilder fn about JSX
   const makeItem = (obj) => {
@@ -24,7 +32,7 @@ export default () => {
       <li class="portfolio__item">
         <a href={url} class="portfolio__item__a a-reset">
           <div class="loader"></div>
-          <img data-src={imgSrc} alt={imgAlt} class="portfolio__item__image"/>
+          <img src={imgSrc} alt={imgAlt} class="portfolio__item__image"/>
           <div class="portfolio__item__overlay">
             <h3>{title}</h3>
           </div>
@@ -38,32 +46,50 @@ export default () => {
   const total = parseInt(items.getAttribute('data-total'), 10);
   const loadMoreButton = document.querySelector('.portfolio__load-more');
 
-  // TODO: load 3 at a time instead of 1
-  // TODO: Split portfolio items into custom post types in hugo
-  // TODO: Generate a json/yaml file with hugo for all the portfolio items
-
+  // TODO: keep portfolio items loaded if go off the page and back onto it again?
   if (total > INITIAL_NO_SHOWING) {
     const loadClick = () => {
-      const item = items.appendChild(makeItem({
-        url: 'https://google.com',
-        imgSrc: '/img/crime-map.jpg',
-        imgAlt: '',
-        title: 'Jim test',
-      }));
+    
+      const addItems = () => {
+        const itemsToAdd = portfolioJSON
+          .slice(noShowing) // skip over items already showing
+          .slice(0, 3); // limit to 3 items
+        
+        itemsToAdd.forEach(({ link, listImage, title }) => {
+          const item = makeItem({
+            title,
+            url: link,
+            imgSrc: listImage,
+            imgAlt: title,
+          });
+          items.appendChild(item);
+        });
 
-      noShowing++;
+        noShowing = noShowing + itemsToAdd.length;
+        if (noShowing === total) {
+          loadMoreButton.removeEventListener('click', loadClick);
+          loadMoreButton.parentElement.removeChild(loadMoreButton);
+        }
+        loadMoreButton.disabled = false;
+      };
 
-      if (noShowing === total) {
-        loadMoreButton.removeEventListener('click', loadClick);
-        loadMoreButton.parentElement.removeChild(loadMoreButton);
+      loadMoreButton.disabled = true;
+      if (portfolioJSON === false) {
+        // TODO: handle error getting JSON better
+        return fetchPortfolioJSON()
+          .then(addItems)
+          .catch((err) => {
+            console.log(err);
+          });
       }
-
+      addItems();
     };
+
     loadMoreButton.style.display = '';
     loadMoreButton.addEventListener('click', loadClick);
 
     return () => {
-      loadMoreButton.removeEventListener('click', loadClick);
+      if (loadMoreButton != null) loadMoreButton.removeEventListener('click', loadClick);
     }
 
   }
