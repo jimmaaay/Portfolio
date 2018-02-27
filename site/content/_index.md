@@ -5,7 +5,7 @@ tech:
   - git
   - gulp
   - html
-  - js
+  - javascript
   - node
   - npm
   - php 
