@@ -10,6 +10,7 @@ const images = require('./images');
 const other = require('./other');
 const minifyHTML = require('./minifyHTML');
 const copyProjects = require('./copyProjects');
+const copyRedirects = require('./copyRedirects');
 
 module.exports.dev = gulp.series(
   clean,
@@ -23,6 +24,7 @@ module.exports.build = gulp.series(
   gulp.parallel(scripts, styles, svgSpriter, images, other),
   manifests,
   copyProjects,
-  hugo
-  // minifyHTML
+  copyRedirects,
+  hugo,
+  minifyHTML
 );

@@ -2,6 +2,9 @@
 node_modules
 dist
 
+# Ignore npm debug
+npm-debug.log
+
 # Don't wanna use lock files
 package-lock.json
 
