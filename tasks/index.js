@@ -11,10 +11,12 @@ const other = require('./other');
 const minifyHTML = require('./minifyHTML');
 const copyProjects = require('./copyProjects');
 const copyRedirects = require('./copyRedirects');
+const serviceWorker = require('./serviceWorker');
 
 module.exports.dev = gulp.series(
   clean,
   gulp.parallel(styles, svgSpriter, images, other),
+  serviceWorker,
   copyProjects,
   server
 );
@@ -26,5 +28,6 @@ module.exports.build = gulp.series(
   copyProjects,
   copyRedirects,
   hugo,
-  minifyHTML
+  minifyHTML,
+  serviceWorker
 );
