@@ -107,7 +107,9 @@
             <ul class="d-carousel__ul reset">
               {{ range .Params.tech }}
                 <li class="d-carousel__item">
-                  <div class="technology__item" data-icon="{{ . }}"></div>
+                  <div class="technology__item" data-icon="{{ . }}">
+                    <span class="technology__item__text">{{ . }}</span>
+                  </div>
                 </li>
               {{ end }}
             </ul>

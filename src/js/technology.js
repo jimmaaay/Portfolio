@@ -21,7 +21,7 @@ export default (observer) => {
           </svg>
         `;
 
-        el.innerHTML = html;
+        el.insertAdjacentHTML('beforeend', html);
       });
       observer.unobserve(target);
     };

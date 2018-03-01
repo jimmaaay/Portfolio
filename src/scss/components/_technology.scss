@@ -22,8 +22,7 @@
     position: relative;
     border-radius: 50%;
 
-    &::after {
-      content: attr(data-icon);
+    &__text {
       position: absolute;
       color: #fff;
       background: $black;
