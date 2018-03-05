@@ -12,6 +12,8 @@ My portfolio site built using [hugo](https://gohugo.io/)
 
 * `npm run build` - Builds the site ready for production and places files in the `dist` directory
 
+* `npm run serviceWorker` - Builds the site ready for production and will recompile the service worker when `src/sw.js` changes. Useful for building the service worker.
+
 
 ### Notes
 

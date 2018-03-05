@@ -8,6 +8,7 @@ const styles = require('./styles');
 const svgSpriter = require('./svgSpriter');
 const images = require('./images');
 const other = require('./other');
+const serviceWorker = require('./serviceWorker');
 
 let reload = () => {};
 

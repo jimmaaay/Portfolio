@@ -7,8 +7,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "cross-env gulp dev --gulpfile tasks",
-    "build": "cross-env NODE_ENV=production gulp build --gulpfile tasks"
+    "dev": "cross-env NODE_ENV=development gulp dev --gulpfile tasks",
+    "build": "cross-env NODE_ENV=production gulp build --gulpfile tasks",
+    "serviceWorker": "cross-env NODE_ENV=production gulp serviceWorker --gulpfile tasks"
   },
   "author": "",
   "license": "GPL",
@@ -33,6 +34,7 @@
     "html-minifier": "^3.5.9",
     "hugo-bin": "^0.18.1",
     "ncp": "^2.0.0",
+    "static-server": "^3.0.0",
     "uglifyjs-webpack-plugin": "^1.1.4",
     "webpack": "^3.10.0",
     "webpack-assets-manifest": "^1.0.0",

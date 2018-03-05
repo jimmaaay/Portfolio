@@ -20,3 +20,15 @@ self.addEventListener('activate', event => {
     ))
   );
 });
+
+
+
+// self.addEventListener('fetch', event => {
+//   const url = new URL(event.request.url);
+  
+//   // Browser sync requests
+//   if (url.pathname.indexOf('/browser-sync/') === 0) return fetch(event.request);
+//   // console.log(url);
+//   return fetch(event.request);
+// });
+

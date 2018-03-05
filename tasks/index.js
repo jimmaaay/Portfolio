@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const StaticServer = require('static-server');
 const clean = require('./clean');
 const { scripts } = require('./webpack');
 const { server } = require('./server');
@@ -12,6 +13,22 @@ const minifyHTML = require('./minifyHTML');
 const copyProjects = require('./copyProjects');
 const copyRedirects = require('./copyRedirects');
 const serviceWorker = require('./serviceWorker');
+
+const staticServer = (done) => {
+  const server = new StaticServer({
+    host: 'localhost',
+    rootPath: './dist',
+    port: 3000,
+  });
+  gulp.watch('./src/sw.js').on('all', serviceWorker);
+
+  server.start(() => {
+    console.log('work??', server);
+    done();
+  });
+
+};
+
 
 module.exports.dev = gulp.series(
   clean,
@@ -30,4 +47,16 @@ module.exports.build = gulp.series(
   hugo,
   minifyHTML,
   serviceWorker
+);
+
+module.exports.serviceWorker = gulp.series(
+  clean, 
+  gulp.parallel(scripts, styles, svgSpriter, images, other),
+  manifests,
+  copyProjects,
+  copyRedirects,
+  hugo,
+  minifyHTML,
+  serviceWorker,
+  staticServer,
 );
