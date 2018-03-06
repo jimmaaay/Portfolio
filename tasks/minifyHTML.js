@@ -25,7 +25,6 @@ const minifyHTML = function minifyHTML(done) {
       const fileContents = await readFileAsync(fileName, 'utf-8');
       const minifiedResult = minify(fileContents, {
         collapseWhitespace: true,
-        collapseInlineTagWhitespace: true,
       });
       await writeFileAsync(fileName, minifiedResult);
     }

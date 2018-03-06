@@ -14,3 +14,6 @@ webpack-manifest.json
 
 # Used when revisioning files
 site/data/manifest.json
+
+# Allow dist files in the project dir
+!project/*/dist

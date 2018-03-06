@@ -18,6 +18,7 @@ const serviceWorker = async function serviceWorker(done) {
       './dist/styles/**/*.css',
       './dist/img/svgSprites/**/*.svg',
       './dist/other/fonts/**/*.woff2',
+      './dist/portfolio/index.json',
     ];
     const fileNames = await globHelper(patterns);
     const newFileNames = fileNames.map(fileName => fileName.replace('./dist', ''));

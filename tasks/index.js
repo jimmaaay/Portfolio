@@ -23,7 +23,7 @@ const staticServer = (done) => {
   gulp.watch('./src/sw.js').on('all', serviceWorker);
 
   server.start(() => {
-    console.log('work??', server);
+    console.log(`Started server on port ${server.port}`);
     done();
   });
 
