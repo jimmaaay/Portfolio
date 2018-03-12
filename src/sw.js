@@ -40,6 +40,8 @@ self.addEventListener('fetch', event => {
 
   // page request
   if (url.pathname[url.pathname.length -1] === '/') {
+    let requestURI;
+    let addTemplate = false;
 
     // Request the partial instead???
     if (url.pathname.indexOf('/partials/') !== 0) {
@@ -48,8 +50,24 @@ self.addEventListener('fetch', event => {
       newUrl.pathname = `/partials${url.pathname}`;
       // const request = new Request(newUrl.href, Object.assign({}, event.request));
       // request.url = newUrl.href;
-      console.log(request, event.request);
+      requestURI = newUrl.href;
+      addTemplate = true;
+    } else {
+      requestURI = url.href;
     }
+
+    console.log(requestURI, addTemplate);
+
+    return event.respondWith(
+      caches.match(requestURI).then(r => {
+        if (r && addTemplate === false) return r;
+        else if (r && addTemplate === true) {
+          // Add template to response
+          console.log('ADD TEMPLATE TO RESPONSE');
+          return r;
+        } else fetch(event.request);
+      })
+    )
 
   }
 
