@@ -1,3 +1,4 @@
+const OPENING_MAIN_TAG_LENGTH = 6;
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -30,7 +31,6 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   const { method } = event.request;
 
-  // 
   if (
     method !== 'GET' // only want to capture GET requests
     // If not on jimmythompson.me or if in /project dir just fetch
@@ -43,36 +43,62 @@ self.addEventListener('fetch', event => {
     let requestURI;
     let addTemplate = false;
 
-    // Request the partial instead???
+    // Request the partial instead
     if (url.pathname.indexOf('/partials/') !== 0) {
-      // const newURL = `/partials${url.pathname}`;
       const newUrl = new URL(url.href);
       newUrl.pathname = `/partials${url.pathname}`;
-      // const request = new Request(newUrl.href, Object.assign({}, event.request));
-      // request.url = newUrl.href;
       requestURI = newUrl.href;
       addTemplate = true;
     } else {
       requestURI = url.href;
     }
 
-    console.log(requestURI, addTemplate);
-
     return event.respondWith(
       caches.match(requestURI).then(r => {
+
+        // If requesting a partial that is cached returns it here
         if (r && addTemplate === false) return r;
-        else if (r && addTemplate === true) {
-          // Add template to response
-          console.log('ADD TEMPLATE TO RESPONSE');
-          return r;
-        } else fetch(event.request);
+
+        /* 
+         * If requesting a page that can request a partial instead do that
+         * and then append to the template
+         */
+        else if (addTemplate === true) {
+          let header;
+          let footer;
+
+          return caches
+            .match('/template/') // Get template
+            .then(res => {
+              if (res == null) throw new Error('NO_TEMPLATE'); // Go to fallback catch
+              return res.text();
+            })
+            .then(html => {
+              header = html.slice(0, html.indexOf('<main>') + OPENING_MAIN_TAG_LENGTH);
+              footer = html.slice(html.indexOf('</main>'));
+
+              // TODO: revalidate `r` if not undefined & add item to cache if fetching
+              return r || fetch(requestURI);
+            })
+            .then(_ => _.text())
+            .then(response => {
+              // TODO: edit classNames of pages from .page-variables script tag
+              const html = header + response + footer;
+              return new Response(html, {
+                headers: new Headers({
+                  'Content-Type': 'text/html',
+                }),
+              });
+            })
+            .catch((err) => fetch(event.request)); // fallback to normal request
+        
+        } else return fetch(event.request);
       })
     )
 
   }
 
-
-  event.respondWith(
+  return event.respondWith(
     caches.match(event.request).then(r => r || fetch(event.request))
   );
 });
