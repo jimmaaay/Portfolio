@@ -1,5 +1,5 @@
 import EventEmitter from 'eventemitter3';
-import { callbackKey } from './helpers';
+import { callbackKey, changePageClasses } from './helpers';
 import lazyLoad from './lazyload';
 import portfolioInit from './portfolio-items';
 import techInit from './technology';
@@ -42,6 +42,7 @@ const initFunctions = () => {
 
 linksInit(events);
 initFunctions();
+changePageClasses();
 
 events.on('CHANGING_PAGE', destroyFunctions);
 events.on('CHANGED_PAGE', initFunctions);

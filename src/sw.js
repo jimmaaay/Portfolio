@@ -56,8 +56,18 @@ self.addEventListener('fetch', event => {
     return event.respondWith(
       caches.match(requestURI).then(r => {
 
-        // If requesting a partial that is cached returns it here
-        if (r && addTemplate === false) return r;
+        /**
+         * This will revalidate the file and will also be used as the returned
+         * promise if there is no cached file.
+         */
+        const fetchPromise = fetch(requestURI).then((networkResponse) => {
+          cache.put(requestURI, networkResponse.clone());
+          // TODO: send notification if networkResponse & cached response are not the same
+          return networkResponse;
+        });
+
+        // If requesting a partial
+        if (addTemplate === false) return r || fetchPromise;
 
         /* 
          * If requesting a page that can request a partial instead do that
@@ -77,8 +87,7 @@ self.addEventListener('fetch', event => {
               header = html.slice(0, html.indexOf('<main>') + OPENING_MAIN_TAG_LENGTH);
               footer = html.slice(html.indexOf('</main>'));
 
-              // TODO: revalidate `r` if not undefined & add item to cache if fetching
-              return r || fetch(requestURI);
+              return r || fetchPromise;
             })
             .then(_ => _.text())
             .then(response => {
@@ -90,9 +99,9 @@ self.addEventListener('fetch', event => {
                 }),
               });
             })
-            .catch((err) => fetch(event.request)); // fallback to normal request
-        
-        } else return fetch(event.request);
+            .catch((err) => fetchPromise); // fallback to normal request   
+        }
+
       })
     )
 

@@ -1,4 +1,4 @@
-import { parents } from './helpers';
+import { parents, changePageClasses } from './helpers';
 
 const { body } = document;
 
@@ -19,11 +19,7 @@ export default (events) => {
     mainTag.classList.remove('hidden');
     events.emit('CHANGED_PAGE');
     body.className = '';
-    const script = document.querySelector('.page-variables');
-    if (script == null) return;
-    const json = script.textContent.trim();
-    const data = JSON.parse(json);
-    body.className = data.className;
+    changePageClasses();
   };
 
   // TODO: Store response for browsers that do not support service worker?
