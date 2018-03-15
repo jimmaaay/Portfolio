@@ -1,6 +1,10 @@
     </main>
     <script>
       if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('message', event => {
+            console.log(event);
+          });
+          
         navigator.serviceWorker.register('/sw.js')
           .then(function() {
             console.log('Added service worker')
@@ -8,6 +12,9 @@
           .catch(function() {
             console.log('Error adding service worker');
           });
+
+
+
       }
     </script>
   </body>

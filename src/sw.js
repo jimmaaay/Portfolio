@@ -29,6 +29,7 @@ const getUrlExtension = url => url.split(/\#|\?/)[0].split('.').pop().trim();
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+  console.log(event);
   const { method } = event.request;
 
   if (
@@ -54,55 +55,102 @@ self.addEventListener('fetch', event => {
     }
 
     return event.respondWith(
-      caches.match(requestURI).then(r => {
+      caches.open(variables.cacheName).then((cache) => {
 
-        /**
-         * This will revalidate the file and will also be used as the returned
-         * promise if there is no cached file.
-         */
-        const fetchPromise = fetch(requestURI).then((networkResponse) => {
-          cache.put(requestURI, networkResponse.clone());
-          // TODO: send notification if networkResponse & cached response are not the same
-          return networkResponse;
+        return cache.match(requestURI).then(r => {
+
+          /**
+           * This will revalidate the file and will also be used as the returned
+           * promise if there is no cached file.
+           */
+          const fetchPromise = fetch(requestURI).then((networkResponse) => {
+            cache.put(requestURI, networkResponse.clone());
+
+            // if (r) {
+            //   console.log(r.text());
+            //   Promise.all([
+            //     networkResponse.clone().text(),
+            //     r.clone().text()
+            //   ])
+            //   .then((items) => {
+            //     console.log(items);
+            //   });
+            
+            // }
+
+            if (r) {
+              const oldEtag = r.headers.get('etag');
+              const newEtag = networkResponse.headers.get('etag');
+
+              if (oldEtag == null || newEtag == null) {
+                clients.get(event.clientId)
+                  .then((client) => {
+                    console.log('here', client, event);
+                    if (!client) return;
+                    client.postMessage({
+                      msg: 'NEW_CONTENT',
+                      url: event.request.url,
+                    });
+                  });
+              } else if (oldEtag !== newEtag) { // new content
+                clients.get(event.clientId)
+                  .then((client) => {
+                    if (!client) return;
+                    client.postMessage({
+                      msg: 'NEW_CONTENT',
+                      url: event.request.url,
+                    });
+                  });
+              }
+
+              // console.log(Array.from(networkResponse.headers));
+
+            }
+
+
+            // TODO: send notification if networkResponse & cached response are not the same
+            return networkResponse;
+          });
+
+          // If requesting a partial
+          if (addTemplate === false) return r || fetchPromise;
+
+          /* 
+          * If requesting a page that can request a partial instead do that
+          * and then append to the template
+          */
+          else if (addTemplate === true) {
+            let header;
+            let footer;
+
+            return caches
+              .match('/template/') // Get template
+              .then(res => {
+                if (res == null) throw new Error('NO_TEMPLATE'); // Go to fallback catch
+                return res.text();
+              })
+              .then(html => {
+                header = html.slice(0, html.indexOf('<main>') + OPENING_MAIN_TAG_LENGTH);
+                footer = html.slice(html.indexOf('</main>'));
+
+                return r || fetchPromise;
+              })
+              .then(_ => _.text())
+              .then(response => {
+                const html = header + response + footer;
+                return new Response(html, {
+                  headers: new Headers({
+                    'Content-Type': 'text/html',
+                  }),
+                });
+              })
+              .catch((err) => fetchPromise); // fallback to normal request   
+          }
+
         });
 
-        // If requesting a partial
-        if (addTemplate === false) return r || fetchPromise;
-
-        /* 
-         * If requesting a page that can request a partial instead do that
-         * and then append to the template
-         */
-        else if (addTemplate === true) {
-          let header;
-          let footer;
-
-          return caches
-            .match('/template/') // Get template
-            .then(res => {
-              if (res == null) throw new Error('NO_TEMPLATE'); // Go to fallback catch
-              return res.text();
-            })
-            .then(html => {
-              header = html.slice(0, html.indexOf('<main>') + OPENING_MAIN_TAG_LENGTH);
-              footer = html.slice(html.indexOf('</main>'));
-
-              return r || fetchPromise;
-            })
-            .then(_ => _.text())
-            .then(response => {
-              // TODO: edit classNames of pages from .page-variables script tag
-              const html = header + response + footer;
-              return new Response(html, {
-                headers: new Headers({
-                  'Content-Type': 'text/html',
-                }),
-              });
-            })
-            .catch((err) => fetchPromise); // fallback to normal request   
-        }
-
       })
+
     )
 
   }
