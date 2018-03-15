@@ -1,0 +1,10 @@
+# Add noindex header to partials
+
+/partials/*
+  X-Robots-Tag: noindex
+
+
+# Add noindex header to template
+
+/template/*
+  X-Robots-Tag: noindex

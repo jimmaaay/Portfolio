@@ -7,11 +7,8 @@ const hugo = require('./hugo');
 const styles = require('./styles');
 const manifests = require('./manifests');
 const svgSpriter = require('./svgSpriter');
-const images = require('./images');
 const other = require('./other');
 const minifyHTML = require('./minifyHTML');
-const copyProjects = require('./copyProjects');
-const copyRedirects = require('./copyRedirects');
 const serviceWorker = require('./serviceWorker');
 
 const staticServer = (done) => {
@@ -32,18 +29,15 @@ const staticServer = (done) => {
 
 module.exports.dev = gulp.series(
   clean,
-  gulp.parallel(styles, svgSpriter, images, other),
+  gulp.parallel(styles, svgSpriter, other),
   serviceWorker,
-  copyProjects,
   server
 );
 
 module.exports.build = gulp.series(
   clean, 
-  gulp.parallel(scripts, styles, svgSpriter, images, other),
+  gulp.parallel(scripts, styles, svgSpriter, other),
   manifests,
-  copyProjects,
-  copyRedirects,
   hugo,
   minifyHTML,
   serviceWorker
@@ -51,10 +45,8 @@ module.exports.build = gulp.series(
 
 module.exports.serviceWorker = gulp.series(
   clean, 
-  gulp.parallel(scripts, styles, svgSpriter, images, other),
+  gulp.parallel(scripts, styles, svgSpriter, other),
   manifests,
-  copyProjects,
-  copyRedirects,
   hugo,
   minifyHTML,
   serviceWorker,

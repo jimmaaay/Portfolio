@@ -14,6 +14,7 @@ const serviceWorker = async function serviceWorker(done) {
     // Files to get
     const patterns = [
       './dist/partials/index.html',
+      './dist/partials/offline/index.html',
       './dist/template/index.html',
       './dist/js/**/*.js',
       './dist/styles/**/*.css',

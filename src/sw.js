@@ -29,7 +29,6 @@ const getUrlExtension = url => url.split(/\#|\?/)[0].split('.').pop().trim();
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  console.log(event);
   const { method } = event.request;
 
   if (
@@ -65,50 +64,6 @@ self.addEventListener('fetch', event => {
            */
           const fetchPromise = fetch(requestURI).then((networkResponse) => {
             cache.put(requestURI, networkResponse.clone());
-
-            // if (r) {
-            //   console.log(r.text());
-            //   Promise.all([
-            //     networkResponse.clone().text(),
-            //     r.clone().text()
-            //   ])
-            //   .then((items) => {
-            //     console.log(items);
-            //   });
-            
-            // }
-
-            if (r) {
-              const oldEtag = r.headers.get('etag');
-              const newEtag = networkResponse.headers.get('etag');
-
-              if (oldEtag == null || newEtag == null) {
-                clients.get(event.clientId)
-                  .then((client) => {
-                    console.log('here', client, event);
-                    if (!client) return;
-                    client.postMessage({
-                      msg: 'NEW_CONTENT',
-                      url: event.request.url,
-                    });
-                  });
-              } else if (oldEtag !== newEtag) { // new content
-                clients.get(event.clientId)
-                  .then((client) => {
-                    if (!client) return;
-                    client.postMessage({
-                      msg: 'NEW_CONTENT',
-                      url: event.request.url,
-                    });
-                  });
-              }
-
-              // console.log(Array.from(networkResponse.headers));
-
-            }
-
-
-            // TODO: send notification if networkResponse & cached response are not the same
             return networkResponse;
           });
 
@@ -144,7 +99,8 @@ self.addEventListener('fetch', event => {
                   }),
                 });
               })
-              .catch((err) => fetchPromise); // fallback to normal request   
+              // TODO: Offline page
+              .catch((err) => fetch(event.request)); // fallback to normal request   
           }
 
         });

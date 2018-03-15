@@ -1,8 +1,38 @@
 const gulp = require('gulp');
 
-// Copies images to dist
-//  Not doing image optimisations here, as it would slow down netlify deploys.
+// Copies various files to the dist directory
 module.exports = function other(done) {
-  return gulp.src('src/other/**/*')
-    .pipe(gulp.dest('./dist/other'));
+  const copyStuff = [
+    {
+      src: 'src/other/**/*',
+      dest: 'dist/other',
+    },
+    {
+      src: [
+        '_redirects',
+        '_headers',
+      ],
+      dest: 'dist',
+    },
+    {
+      src: 'src/img/**/*',
+      dest: 'dist/img',
+    },
+    {
+      src: 'project/**/*',
+      dest: 'dist/project'
+    }
+  ];
+
+  Promise.all(
+    copyStuff.map(({ src, dest }) => {
+      return new Promise((resolve) => {
+        gulp
+          .src(src)
+          .pipe(gulp.dest(dest))
+          .on('end', resolve);
+      });
+    })
+  ).then(_ => done());
+
 };
