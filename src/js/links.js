@@ -22,7 +22,6 @@ export default (events) => {
     changePageClasses();
   };
 
-  // TODO: Store response for browsers that do not support service worker?
   const changePage = (pageURI) => {
     const partialUrl = `/partials${pageURI}`;
     const time = performance.now();
@@ -58,7 +57,6 @@ export default (events) => {
       const { href } = item;
       const url = new URL(href);    
 
-      // TODO: don't run the code in /project dir
       if (
         url.origin !== location.origin // Not the same domain
         || (url.origin === location.origin && url.pathname === location.pathname) // Same page

@@ -8,3 +8,9 @@
 
 /template/*
   X-Robots-Tag: noindex
+
+
+# Add noindex header to offline page
+
+/offline/*
+  X-Robots-Tag: noindex
