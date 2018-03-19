@@ -1,6 +1,7 @@
 .about {
   // overflow: hidden; // Must be visible as chrome will not anchor to .title-anchor properly if this is set
-  margin-bottom: 7rem;
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
 
   &__content {
     overflow: hidden;
@@ -47,6 +48,19 @@
 
   }
 
+  &::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: $darkOrange;
+    position: absolute;
+    bottom: -3rem;
+    left: 5rem;
+    border-radius: 50%;
+    border-top-left-radius: 40% 43%;
+    transform: rotate(30deg);
+  }
 
 }
 

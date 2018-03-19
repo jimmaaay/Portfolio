@@ -7,7 +7,7 @@ const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
 
 const serviceWorker = async function serviceWorker(done) {
-  if (process.env.NODE_ENV === 'developement') {
+  if (process.env.NODE_ENV === 'development') {
     // Add a blank service worker when running the site on localhost
     await writeFileAsync('./dist/sw.js', '');
   } else {

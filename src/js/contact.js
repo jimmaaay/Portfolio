@@ -25,10 +25,14 @@ document.addEventListener('submit', (e) => {
   })
   .then(res => res.json())
   .then(() => {
-    console.log('SENT FORM');
+    const resetFormItems = array => array.forEach(el => {
+      el.value = '';
+      el.parentElement.classList.remove('form__item--open');
+    });
+    resetFormItems([name, email, message]);
   })
   .catch((err) => {
     console.log('ERROR WITH FORM', err);
-  })
+  });
 
 });
