@@ -6,7 +6,7 @@ import techInit from './technology';
 import linksInit from './links';
 import { lightbox } from './lightbox';
 import './form';
-import './contact';
+import contactInit from './contact';
 import './header';
 
 const lightboxControls = lightbox();
@@ -50,10 +50,12 @@ document.getElementById('attribution').addEventListener('click', (e) => {
   `);
 });
 
-
+contactInit(lightboxControls);
 linksInit(events);
 initFunctions();
 changePageClasses();
+
+window.lightbox = lightboxControls;
 
 events.on('CHANGING_PAGE', destroyFunctions);
 events.on('CHANGED_PAGE', initFunctions);

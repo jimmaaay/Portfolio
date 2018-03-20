@@ -7,7 +7,17 @@ a {
   color: $darkOrange;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 main {
+  flex-grow: 1;
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
   a:not(.a-reset) {

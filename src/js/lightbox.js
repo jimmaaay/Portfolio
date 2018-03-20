@@ -5,7 +5,7 @@ export const lightbox = () => {
   const lightbox = (
     <div className="lightbox">
       <div className="lightbox__inner">
-        <button className="button lightbox__close">Close</button>
+        <button className="lightbox__close">Close</button>
         <div className="lightbox__content"></div>
       </div>
     </div>
@@ -44,6 +44,12 @@ export const lightbox = () => {
 
   lightbox.addEventListener('click', ({target}) => {
     if (target === close || target === lightbox || target === inner) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (state === 'OPEN' && e.code === 'Escape' || e.keyCode === 27) {
       closeLightbox();
     }
   });
