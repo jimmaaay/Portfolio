@@ -162,9 +162,14 @@ body {
       height: 6rem;
       width: 19.6rem;
       margin-right: -1rem;
+      
+      // Fixes clip-path bug in safari
+      // https://stackoverflow.com/questions/29840326/elements-with-position-relative-with-svg-clip-paths-not-displaying-in-safari
+      transform: translateZ(0); 
 
       ul {
         height: 100%;
+        margin: 0;
       }
 
       a {
@@ -187,7 +192,7 @@ body {
         &:first-child {
 
           a {
-            padding-left: 3rem;
+            padding-left: 2.5rem;
           }
 
         }
