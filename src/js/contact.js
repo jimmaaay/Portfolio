@@ -34,7 +34,10 @@ export default (lightboxControls) => {
         'Content-Type': 'application/x-www-form-urlencoded',
       }),
     })
-    .then(res => res.json())
+    .then((res) => {
+      if (res.status === 200) return true;
+      throw new Error('NOT_200');
+    })
     .then(() => {
       const resetFormItems = array => array.forEach(el => {
         el.value = '';
