@@ -15,17 +15,29 @@ export default (lightboxControls) => {
       name: name.value,
       email: email.value,
       message: message.value,
+      'form-name': target['form-name'].value,
     };
 
+    const urlEncodedData = Object.keys(data)
+      .map((key) => {
+        const encodedKey = encodeURIComponent(key);
+        const encodedValue = encodeURIComponent(data[key]);
+        return `${encodedKey}=${encodedValue}`;
+      })
+      .join('&');
+
     // attempt at obscuring email address from souce code
-    fetch(`https://formspree.io/${atob('dGhpc2d1eUBqaW1teXRob21wc29uLm1l')}`, {
+    fetch(target.action, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: urlEncodedData,
       headers: new Headers({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       }),
     })
-    .then(res => res.json())
+    .then((res) => {
+      if (res.status === 200) return true;
+      throw new Error('NOT_200');
+    })
     .then(() => {
       const resetFormItems = array => array.forEach(el => {
         el.value = '';
