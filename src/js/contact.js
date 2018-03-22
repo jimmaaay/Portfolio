@@ -15,6 +15,7 @@ export default (lightboxControls) => {
       name: name.value,
       email: email.value,
       message: message.value,
+      'form-name': target['form-name'].value,
     };
 
     const urlEncodedData = Object.keys(data)
