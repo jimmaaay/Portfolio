@@ -20,8 +20,6 @@ module.exports = (done) => {
     const stylesheet = await readFileAsync(cssFileName[0]);
     const styleTag = `<style>${stylesheet}</style>`;
 
-    console.log(`<link rel="stylesheet" href="${cssFileName[0].replace('dist', '')}">`);
-
     for (const fileName of files) {
       const fileContents = await readFileAsync(fileName, 'utf-8');
       const newContent = fileContents.replace(`<link rel="stylesheet" href="${cssFileName[0].replace('dist', '')}">`, styleTag);
