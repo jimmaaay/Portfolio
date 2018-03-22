@@ -10,6 +10,7 @@ const svgSpriter = require('./svgSpriter');
 const other = require('./other');
 const minifyHTML = require('./minifyHTML');
 const serviceWorker = require('./serviceWorker');
+const injectCSS = require('./injectCSS');
 
 const staticServer = (done) => {
   const server = new StaticServer({
@@ -40,7 +41,8 @@ module.exports.build = gulp.series(
   manifests,
   hugo,
   minifyHTML,
-  serviceWorker
+  injectCSS,
+  serviceWorker,
 );
 
 module.exports.serviceWorker = gulp.series(
@@ -49,6 +51,7 @@ module.exports.serviceWorker = gulp.series(
   manifests,
   hugo,
   minifyHTML,
+  injectCSS,
   serviceWorker,
   staticServer,
 );
