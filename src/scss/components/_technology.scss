@@ -89,31 +89,3 @@
   }
 
 }
-
-@media (min-width: 93.75em) { // 1500px
-
-  .technology {
-
-    &__items {
-      max-width: 52rem;
-    }
-
-    .d-carousel {
-
-      &__item {
-
-        &:nth-child(4n) {
-          margin-right: 3rem;
-        }
-
-        &:nth-child(5n) {
-          margin-right: 0;
-        }
-
-      }
-
-    }
-
-  }
-
-}
