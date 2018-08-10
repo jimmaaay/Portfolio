@@ -11,4 +11,4 @@ d-carousel is a carousel library based off of **g-carousel** that is shown in go
 
 ![g-carousel](/img/portfolio/d-carousel/g-carousel-example.jpg)
 
-This plugin doesn't have any dependencies and is sitting at just under 4kb (not gzipped). The javascript is only required to make the previous & next buttons functional. Meaning the carousel can be used (on devices that let you scroll sideways without a scrollbar) before the javascript is loaded. 
+This library doesn't have any dependencies and is sitting at just under 4kb (before gzip compression). The javascript is only required to make the previous & next buttons functional. Meaning the carousel can be used (on devices that let you scroll sideways without a scrollbar) before the javascript is loaded. 
