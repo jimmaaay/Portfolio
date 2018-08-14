@@ -160,3 +160,18 @@
   }
 
 }
+
+
+
+
+@media (min-width: 106.25em) { // 1700px
+
+  .hero {
+
+    &__svg {
+      right: calc((100% - 70rem) / 2);
+    }
+
+  }
+
+}

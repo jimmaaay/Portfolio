@@ -3,7 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $.Site.Title }}</title>
+    <title>Jimmy Thompson - Front End Web Developer</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/other/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/other/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/other/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/other/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/other/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/other/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/other/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#E87051">
     <link rel="stylesheet" href="/styles/{{ if isset .manifest "main_css" }}{{ .manifest.main_css }}{{ else }}main.css{{ end }}"/>
     {{/* Preload the fonts required by the site for faster load times */}}
     <link rel="preload" href="/other/fonts/Metropolis-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />

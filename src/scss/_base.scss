@@ -68,6 +68,11 @@ img {
   width: 100%;
   max-width: 59rem;
   margin: 0 auto;
+
+  &--small {
+    max-width: 42rem;
+  }
+  
 }
 
 
