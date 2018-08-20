@@ -1,21 +1,17 @@
-import { parents } from './helpers';
-
 export default (lightboxControls) => {
 
-  /**
-   * Was planning on using FormData but edge doesn't support parts
-   * that I was gonna use :(
-   */
-  document.addEventListener('submit', (e) => {
-    const { target } = e;
-    if (! target.matches('.contact__form')) return;
-    const { name, email, message } = target;
-    e.preventDefault();
+  const run = (recpatchaResponse) => {
+    const form = document.querySelector('.contact__form');
+    if (form == null || recpatchaResponse == null) return;
+    const button = form.querySelector('button[type="submit"]');
+
+    const { name, email, message } = form;
     const data = {
       name: name.value,
       email: email.value,
       message: message.value,
-      'form-name': target['form-name'].value,
+      'form-name': form['form-name'].value,
+      'g-recaptcha-response': recpatchaResponse,
     };
 
     const urlEncodedData = Object.keys(data)
@@ -27,7 +23,7 @@ export default (lightboxControls) => {
       .join('&');
 
     // attempt at obscuring email address from souce code
-    fetch(target.action, {
+    fetch(form.action, {
       method: 'POST',
       body: urlEncodedData,
       headers: new Headers({
@@ -48,6 +44,7 @@ export default (lightboxControls) => {
         <p>Thank you for getting in touch. I'll try to get back to you as soon as possible</p>
       `);
       lightboxControls.open();
+      button.disabled = false;
     })
     .catch((err) => {
       const emailAddress = atob('dGhpc2d1eUBqaW1teXRob21wc29uLm1l');
@@ -60,5 +57,12 @@ export default (lightboxControls) => {
       lightboxControls.open();
     });
 
-  });
+  }
+
+  if (window.contactRealSubmit !== undefined) {
+    run(window.contactRealSubmit);
+  }
+
+  window.contactRealSubmit = run;
+
 }

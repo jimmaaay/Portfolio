@@ -126,6 +126,7 @@
   </div>
 </section>
 
+{{/* TODO: Handle how recaptcha stuff works after page navigation */}}
 <section class="contact" >
   <div class="wrapper wrapper--small">
     <h1 class="t-center title-anchor" id="contact">Contact Me</h1>
@@ -145,14 +146,20 @@
         </div>
         <script src='https://www.google.com/recaptcha/api.js' async></script>
         <script>
-          function YourOnSubmitFn(response) {
-            console.log(response);
+          function contactSubmit(response) {
+            var submitButton = document.getElementById('submit-button');
+            submitButton.disabled = true;
+            if (typeof window.contactRealSubmit !== 'function') window.contactRealSubmit = response;
+            else window.contactRealSubmit(response);
           }
         </script>
-        <button 
+        <button
+          id="submit-button"
+          type="submit"
           class="form__button button g-recaptcha"
           data-sitekey="{{ getenv "SITE_RECAPTCHA_KEY" }}"
-          data-callback="YourOnSubmitFn">
+          data-badge="inline"
+          data-callback="contactSubmit">
           Submit
         </button>
       </form>
