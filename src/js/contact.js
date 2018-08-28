@@ -1,4 +1,15 @@
-export default (lightboxControls) => {
+export default (lightboxControls, events) => {
+  const renderRecpatcha = _ => window.grecaptcha.execute();
+  const callbackName = 'jimmyRecaptchaRender';
+  const recaptchaURI = `https://www.google.com/recaptcha/api.js?onload=${callbackName}&render=explicit`;
+  const script = document.createElement('script');
+
+  script.src = recaptchaURI;
+  script.async = true;
+  document.body.appendChild(script);
+
+  window[callbackName] = renderRecpatcha;
+  events.on('CHANGED_PAGE', renderRecpatcha);
 
   const run = (recpatchaResponse) => {
     const form = document.querySelector('.contact__form');

@@ -50,7 +50,7 @@ document.getElementById('attribution').addEventListener('click', (e) => {
   `);
 });
 
-contactInit(lightboxControls);
+contactInit(lightboxControls, events);
 linksInit(events);
 initFunctions();
 changePageClasses();
