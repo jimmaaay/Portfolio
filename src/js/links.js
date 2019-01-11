@@ -42,7 +42,7 @@ export default (events) => {
       })
       .catch((err) => {
         // Just fallback by sending the user to the url
-        window.location = url;
+        window.location = pageURI;
       });
   };
 
