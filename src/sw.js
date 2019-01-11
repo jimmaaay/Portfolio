@@ -56,16 +56,19 @@ self.addEventListener('fetch', event => {
     return event.respondWith(
       caches.open(variables.cacheName).then((cache) => {
 
+        // Offline first approach
         return cache.match(requestURI).then(r => {
 
           /**
            * This will revalidate the file and will also be used as the returned
            * promise if there is no cached file.
            */
-          const fetchPromise = fetch(requestURI).then((networkResponse) => {
-            cache.put(requestURI, networkResponse.clone());
-            return networkResponse;
-          });
+          const fetchPromise = fetch(requestURI)
+            .then((networkResponse) => {
+              cache.put(requestURI, networkResponse.clone());
+              return networkResponse;
+            })
+            .catch(_ => caches.match('/partials/offline/'));
 
           // If requesting a partial
           if (addTemplate === false) return r || fetchPromise;
@@ -100,7 +103,7 @@ self.addEventListener('fetch', event => {
                 });
               })
               // TODO: Offline page
-              .catch((err) => fetch(event.request)); // fallback to normal request   
+              .catch((err) => fetch(event.request)) // fallback to normal request
           }
 
         });

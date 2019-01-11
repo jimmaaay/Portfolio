@@ -4,6 +4,7 @@ import lazyLoad from './lazyload';
 import portfolioInit from './portfolio-items';
 import techInit from './technology';
 import linksInit from './links';
+import updateInit from './updateAvailable';
 import { lightbox } from './lightbox';
 import './form';
 import './header';
@@ -52,6 +53,7 @@ document.getElementById('attribution').addEventListener('click', (e) => {
 linksInit(events);
 initFunctions();
 changePageClasses();
+updateInit();
 
 window.lightbox = lightboxControls;
 

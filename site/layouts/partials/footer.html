@@ -4,9 +4,39 @@
         <a href="#" id="attribution">Attribution</a>
       </div>
     </footer>
+    <template id="update-available">
+      <div class="update-available">
+        <p>New update available. Reload the page to see the latest changes.</p>
+        <button class="button" type="button">Reload</button>
+      </div>
+    </template>
     <script>
-      if ('serviceWorker' in navigator) {          
-        navigator.serviceWorker.register('/sw.js');
+      if ('serviceWorker' in navigator) {
+        window.updateAvailable = new Promise((resolve, reject) => {
+
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => {
+              reg.onupdatefound = () => {
+                const installingWorker = reg.installing;
+                installingWorker.onstatechange = () => {
+
+                  switch (installingWorker.state) {
+                    case 'installed': {
+                      if (navigator.serviceWorker.controller) {
+                        resolve(true); // new update available
+                      } else {
+                        resolve(false); // no update available
+                      }
+                      break;
+                    }
+                  }
+
+                };
+              };
+            })
+            .catch(err => console.error('[SW ERROR]', err));
+
+        });
       }
     </script>
   </body>

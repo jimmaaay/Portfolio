@@ -1,17 +1,21 @@
 @font-face {
   font-family: 'Metropolis';
-  src: url('../other/fonts/Metropolis-SemiBold.woff2') format('woff2'),
-      url('../other/fonts/Metropolis-SemiBold.woff') format('woff');
+  src: url('/other/fonts/Metropolis-SemiBold.woff2') format('woff2'),
+      url('/other/fonts/Metropolis-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Metropolis';
-  src: url('../other/fonts/Metropolis-Regular.woff2') format('woff2'),
-      url('../other/fonts/Metropolis-Regular.woff') format('woff');
+  src: url('/other/fonts/Metropolis-Regular.woff2') format('woff2'),
+      url('/other/fonts/Metropolis-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+html {
+  --user-font-size: 1rem;
 }
 
 
@@ -29,7 +33,6 @@ h1, h2, h3, h4, h5, p, ul, ol, .button {
   &:last-child {
     margin-bottom: 0;
   }
-
 }
 
 
@@ -54,6 +57,7 @@ h2 {
 @media (min-width: 37.5em) { // 600px
 
   html {
+    --user-font-size: 0.8rem;
     font-size: 125%;
   }
 
@@ -64,6 +68,7 @@ h2 {
 
   html {
     font-size: 150.625%;
+    --user-font-size: 0.66rem;
   }
 
   h1 {
