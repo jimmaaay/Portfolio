@@ -2,14 +2,4 @@
   padding: 3rem 0;
   background: $black;
   color: #fff;
-
-  &__row {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  &__content {
-    margin-bottom: 2rem;
-  }
-
 }
