@@ -17,7 +17,6 @@
     {{/* Preload the fonts required by the site for faster load times */}}
     <link rel="preload" href="/other/fonts/Metropolis-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/other/fonts/Metropolis-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver" defer></script>
     <script src="/js/{{ if isset .manifest "main_js" }}{{ .manifest.main_js }}{{ else }}main.js{{ end }}" defer ></script>
     {{/* Page variables for JS file */}}
     <script>
