@@ -1,14 +1,17 @@
-const { promisify } = require('util');
-const glob = require('glob');
+import { promisify } from "util";
+import { glob } from "glob";
 
-const globAsync = promisify(glob);
+const globAsync = glob;
+
+// const globAsync = promisify(glob);
 
 // Returns fileNames that match an array of glob selectors
-module.exports.globHelper = async (patterns) => {
+export const globHelper = async (patterns) => {
   const promises = patterns.map((ogPattern) => {
-    const pattern = ogPattern.indexOf('!') === 0
-    ? ogPattern.replace('!', '') // Remove not selector as it's only used in the next step
-    : ogPattern;
+    const pattern =
+      ogPattern.indexOf("!") === 0
+        ? ogPattern.replace("!", "") // Remove not selector as it's only used in the next step
+        : ogPattern;
     return globAsync(pattern);
   });
 
@@ -18,11 +21,10 @@ module.exports.globHelper = async (patterns) => {
     const ogPattern = patterns[i];
 
     // If is a not selector then remove the items from the array that match this
-    if (ogPattern.indexOf('!') === 0) {
-      return ret.filter(item =>  array.indexOf(item) === -1);
+    if (ogPattern.indexOf("!") === 0) {
+      return ret.filter((item) => array.indexOf(item) === -1);
     } else {
       return ret.concat(array);
     }
   }, []);
-  
 };

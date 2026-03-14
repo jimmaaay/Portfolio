@@ -1,8 +1,8 @@
-const del = require('del');
+import { deleteAsync } from "del";
 
 // Deletes files which will be remade later on in the build
-module.exports = function clean(done) {
-  del(['dist', 'site/data/manifest.json'])
+export const clean = function clean(done) {
+  deleteAsync(["dist", "site/data/manifest.json"])
     .then(() => {
       done();
     })

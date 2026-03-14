@@ -1,17 +1,17 @@
-const gulp = require('gulp');
-const Browser = require('browser-sync');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const { config:webpackConfig } = require('./webpack');
-const hugo = require('./hugo');
-const styles = require('./styles');
-const svgSpriter = require('./svgSpriter');
-const other = require('./other');
-const serviceWorker = require('./serviceWorker');
+import gulp from "gulp";
+import Browser from "browser-sync";
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import { config as webpackConfig } from "./webpack.js";
+import hugo from "./hugo.js";
+import styles from "./styles.js";
+import svgSpriter from "./svgSpriter.js";
+import other from "./other.js";
+import serviceWorker from "./serviceWorker.js";
 
 let reload = () => {};
 
-if (! webpackConfig.hasOwnProperty('plugins')) webpackConfig.plugins = [];
+if (!webpackConfig.hasOwnProperty("plugins")) webpackConfig.plugins = [];
 
 // Easy way of refreshing the page on completion of js bundle
 const progressHook = new webpack.ProgressPlugin((percentage, msg) => {
@@ -26,14 +26,11 @@ const browser = Browser.create();
 const bundler = webpack(webpackConfig);
 
 // Runs a browser sync server
-module.exports.server = function server(cb) {
-
+export const server = function server(cb) {
   const config = {
-    server: 'dist',
+    server: "dist",
     ghostMode: false,
-    middleware: [
-      webpackDevMiddleware(bundler),
-    ],
+    middleware: [webpackDevMiddleware(bundler)],
   };
 
   const hugoBuild = (done) => {
@@ -43,24 +40,25 @@ module.exports.server = function server(cb) {
       } else {
         browser.reload();
       }
-      if (typeof done === 'function') done();
+      if (typeof done === "function") done();
     });
   };
 
   hugo(() => {
     reload = browser.reload;
-    gulp.watch('site/**/*').on('all', hugoBuild);
-    gulp.watch('src/scss/**/*').on('all', gulp.series(styles, reload));
-    gulp.watch('src/svg/**/*.svg').on('all', gulp.series(svgSpriter, reload));
-    gulp.watch([
-      'src/other/**/*',
-      '_redirects',
-      '_headers',
-      'src/img/**/*',
-      'project/**/*',
-    ]).on('all', gulp.series(other, reload));
+    gulp.watch("site/**/*").on("all", hugoBuild);
+    gulp.watch("src/scss/**/*").on("all", gulp.series(styles, reload));
+    gulp.watch("src/svg/**/*.svg").on("all", gulp.series(svgSpriter, reload));
+    gulp
+      .watch([
+        "src/other/**/*",
+        "_redirects",
+        "_headers",
+        "src/img/**/*",
+        "project/**/*",
+      ])
+      .on("all", gulp.series(other, reload));
     browser.init(config);
     cb();
   });
-
 };

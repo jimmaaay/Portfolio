@@ -1,15 +1,15 @@
-import { parents } from './helpers';
+import { parents } from "./helpers.js";
 
 const eventFired = (e) => {
   const { target } = e;
   // Check to see if element that triggered event is in .form element
-  if (parents(target, '.form') === false) return; 
-  const item = parents(target, '.form__item');
-  const isOpen = item.classList.contains('form__item--open');
+  if (parents(target, ".form") === false) return;
+  const item = parents(target, ".form__item");
+  const isOpen = item.classList.contains("form__item--open");
   const value = target.value.trim();
-  if (value === '' && isOpen) item.classList.remove('form__item--open');
-  else if (value !== '' && !isOpen) item.classList.add('form__item--open');
+  if (value === "" && isOpen) item.classList.remove("form__item--open");
+  else if (value !== "" && !isOpen) item.classList.add("form__item--open");
 };
 
-document.addEventListener('change', eventFired);
-document.addEventListener('input', eventFired);
+document.addEventListener("change", eventFired);
+document.addEventListener("input", eventFired);

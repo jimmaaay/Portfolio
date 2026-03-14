@@ -1,41 +1,23 @@
-const fs = require('fs');
-const { promisify } = require('util');
-const { minify } = require('html-minifier');
-const { globHelper } = require('./helpers');
+import { readFile, writeFile } from "node:fs/promises";
+import { minify } from "html-minifier";
+import { globHelper } from "./helpers.js";
 
-const readFileAsync = promisify(fs.readFile);
-const writeFileAsync = promisify(fs.writeFile);
+export default async function minifyHTML(done) {
+  const matching = ["../dist/**/*.html", "../!dist/project/**"];
 
-const minifyHTML = function minifyHTML(done) {
+  const files = await globHelper(matching);
 
-  (async () => {
-    
-    const matching = [
-      'dist/**/*.html',
-      '!dist/project/**',
-    ];
+  /**
+   * Will amend one file at a time. Could use blurbirds Promise.map to add
+   * some concurrency.
+   */
+  for (const fileName of files) {
+    const fileContents = await readFile(fileName, "utf-8");
+    const minifiedResult = minify(fileContents, {
+      collapseWhitespace: true,
+    });
+    await writeFile(fileName, minifiedResult);
+  }
 
-    const files = await globHelper(matching);
-
-    /**
-     * Will amend one file at a time. Could use blurbirds Promise.map to add 
-     * some concurrency. 
-     */
-    for (const fileName of files) {
-      const fileContents = await readFileAsync(fileName, 'utf-8');
-      const minifiedResult = minify(fileContents, {
-        collapseWhitespace: true,
-      });
-      await writeFileAsync(fileName, minifiedResult);
-    }
-
-    if (typeof done === 'function') done();
-    
-
-  })();
-
-
-};
-
-
-module.exports = minifyHTML;
+  if (typeof done === "function") done();
+}

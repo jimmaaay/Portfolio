@@ -1,4 +1,4 @@
-import { domBuilder } from './helpers';
+import { domBuilder } from "./helpers.js";
 
 export const lightbox = () => {
   const { body } = document;
@@ -11,45 +11,47 @@ export const lightbox = () => {
     </div>
   );
 
-  const close = lightbox.querySelector('.lightbox__close');
-  const inner = lightbox.querySelector('.lightbox__inner');
-  const content = lightbox.querySelector('.lightbox__content');
+  const close = lightbox.querySelector(".lightbox__close");
+  const inner = lightbox.querySelector(".lightbox__inner");
+  const content = lightbox.querySelector(".lightbox__content");
 
-  let state = 'CLOSED'; // CLOSED, CLOSING, OPENING, OPEN
+  let state = "CLOSED"; // CLOSED, CLOSING, OPENING, OPEN
 
   const openLightbox = () => {
-    state = 'OPENING';
-    lightbox.classList.add('lightbox--open');
+    state = "OPENING";
+    lightbox.classList.add("lightbox--open");
   };
 
   const closeLightbox = () => {
-    state = 'CLOSING';
-    lightbox.classList.remove('lightbox--open');
+    state = "CLOSING";
+    lightbox.classList.remove("lightbox--open");
   };
 
   const changeContent = (html) => {
-    content.innerHTML = html.replace(/href/g, 'target="_blank" rel="noopener" href');
+    content.innerHTML = html.replace(
+      /href/g,
+      'target="_blank" rel="noopener" href',
+    );
   };
 
-  inner.addEventListener('transitionend', (e) => {
-    if (state === 'OPENING') {
-      state = 'OPEN';
-      body.style.overflow = 'hidden';
-    }
-    else { 
-      state = 'CLOSED';
-      body.style.overflow = '';
+  inner.addEventListener("transitionend", (e) => {
+    if (state === "OPENING") {
+      state = "OPEN";
+      body.style.overflow = "hidden";
+    } else {
+      state = "CLOSED";
+      body.style.overflow = "";
     }
   });
 
-  lightbox.addEventListener('click', ({target}) => {
+  lightbox.addEventListener("click", ({ target }) => {
     if (target === close || target === lightbox || target === inner) {
       closeLightbox();
     }
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (state === 'OPEN' && e.code === 'Escape' || e.keyCode === 27) {
+  document.addEventListener("keydown", (e) => {
+    if ((state === "OPEN" && e.code === "Escape") || e.keyCode === 27) {
       closeLightbox();
     }
   });
@@ -61,6 +63,4 @@ export const lightbox = () => {
     open: openLightbox,
     close: closeLightbox,
   };
-
 };
-

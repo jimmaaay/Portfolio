@@ -1,31 +1,34 @@
-import EventEmitter from 'eventemitter3';
-import { callbackKey, changePageClasses } from './helpers';
-import lazyLoad from './lazyload';
-import portfolioInit from './portfolio-items';
-import techInit from './technology';
-import linksInit from './links';
-import updateInit from './updateAvailable';
-import { lightbox } from './lightbox';
-import './form';
-import './header';
+import EventEmitter from "eventemitter3";
+import { callbackKey, changePageClasses } from "./helpers.js";
+import lazyLoad from "./lazyload.js";
+import portfolioInit from "./portfolio-items.js";
+import techInit from "./technology.js";
+import linksInit from "./links.js";
+import updateInit from "./updateAvailable.js";
+import { lightbox } from "./lightbox.js";
+import "./form.js";
+import "./header.js";
 
 const lightboxControls = lightbox();
 const events = new EventEmitter();
 let functionsToDestroy = [];
 
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach((_) => {
-    _.target[callbackKey](_, observer);
-  });
-}, {
-  threshold: Array.from(new Array(50)).map((_, i) => {
-    return i * 0.02;
-  }),
-});
+const observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((_) => {
+      _.target[callbackKey](_, observer);
+    });
+  },
+  {
+    threshold: Array.from(new Array(50)).map((_, i) => {
+      return i * 0.02;
+    }),
+  },
+);
 
 const destroyFunctions = () => {
   functionsToDestroy.forEach((fn) => fn);
-  
+
   // Remove everything currently added to the observer
   observer.disconnect();
 
@@ -35,12 +38,13 @@ const destroyFunctions = () => {
 const initFunctions = () => {
   const portfolioDestroy = portfolioInit();
   const techDestroy = techInit(observer);
-  if (typeof portfolioDestroy === 'function') functionsToDestroy.push(portfolioDestroy);
+  if (typeof portfolioDestroy === "function")
+    functionsToDestroy.push(portfolioDestroy);
   functionsToDestroy.push(techDestroy);
-  lazyLoad(Array.from(document.querySelectorAll('img[data-src]')), observer);
+  lazyLoad(Array.from(document.querySelectorAll("img[data-src]")), observer);
 };
 
-document.getElementById('attribution').addEventListener('click', (e) => {
+document.getElementById("attribution").addEventListener("click", (e) => {
   e.preventDefault();
   lightboxControls.open();
   lightboxControls.changeContent(`
@@ -57,5 +61,5 @@ updateInit();
 
 window.lightbox = lightboxControls;
 
-events.on('CHANGING_PAGE', destroyFunctions);
-events.on('CHANGED_PAGE', initFunctions);
+events.on("CHANGING_PAGE", destroyFunctions);
+events.on("CHANGED_PAGE", initFunctions);

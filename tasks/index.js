@@ -1,57 +1,63 @@
-const gulp = require('gulp');
-const StaticServer = require('static-server');
-const clean = require('./clean');
-const { scripts } = require('./webpack');
-const { server } = require('./server');
-const hugo = require('./hugo');
-const styles = require('./styles');
-const manifests = require('./manifests');
-const svgSpriter = require('./svgSpriter');
-const other = require('./other');
-const minifyHTML = require('./minifyHTML');
-const serviceWorker = require('./serviceWorker');
-const injectCSS = require('./injectCSS');
+import gulp from "gulp";
+import { join, dirname } from "path";
+import StaticServer from "static-server";
+import { clean } from "./clean.js";
+import { scripts } from "./webpack.js";
+import { server } from "./server.js";
+import hugo from "./hugo.js";
+import styles from "./styles.js";
+import manifests from "./manifests.js";
+import svgSpriter from "./svgSpriter.js";
+import other from "./other.js";
+import minifyHTML from "./minifyHTML.js";
+import serviceWorkerScript from "./serviceWorker.js";
+import injectCSS from "./injectCSS.js";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const staticServer = (done) => {
+  const rootPath = join(__dirname, "../dist");
+  console.log({ rootPath });
+
   const server = new StaticServer({
-    host: 'localhost',
-    rootPath: './dist',
+    host: "localhost",
+    rootPath,
     port: 3000,
   });
-  gulp.watch('./src/sw.js').on('all', serviceWorker);
+  gulp.watch("./src/sw.js").on("all", serviceWorkerScript);
 
   server.start(() => {
     console.log(`Started server on port ${server.port}`);
     done();
   });
-
 };
 
-
-module.exports.dev = gulp.series(
+export const dev = gulp.series(
   clean,
   gulp.parallel(styles, svgSpriter, other),
-  serviceWorker,
-  server
+  serviceWorkerScript,
+  server,
 );
 
-module.exports.build = gulp.series(
-  clean, 
+export const build = gulp.series(
+  clean,
   gulp.parallel(scripts, styles, svgSpriter, other),
   manifests,
   hugo,
   minifyHTML,
   injectCSS,
-  serviceWorker,
+  serviceWorkerScript,
 );
 
-module.exports.serviceWorker = gulp.series(
-  clean, 
+export const serviceWorker = gulp.series(
+  clean,
   gulp.parallel(scripts, styles, svgSpriter, other),
   manifests,
   hugo,
   minifyHTML,
   injectCSS,
-  serviceWorker,
+  serviceWorkerScript,
   staticServer,
 );

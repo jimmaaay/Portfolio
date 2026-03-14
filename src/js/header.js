@@ -1,15 +1,19 @@
-import { supportsPassive } from './helpers';
+import { supportsPassive } from "./helpers.js";
 
-const header = document.querySelector('.header');
+const header = document.querySelector(".header");
 const headerScroll = () => {
   if (window.pageYOffset === 0) {
-    header.classList.remove('header--scrolled');
+    header.classList.remove("header--scrolled");
   } else {
-    header.classList.add('header--scrolled');
+    header.classList.add("header--scrolled");
   }
 };
 
 if (header != null) {
   headerScroll();
-  window.addEventListener('scroll', headerScroll, supportsPassive ? { passive: true } : false);
+  window.addEventListener(
+    "scroll",
+    headerScroll,
+    supportsPassive ? { passive: true } : false,
+  );
 }
